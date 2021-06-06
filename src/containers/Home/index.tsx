@@ -6,6 +6,7 @@ import RecentSongs from '../../components/RecentSongs'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import * as Styled from './Home.styled'
+import { Brand } from '../../types'
 
 function Home() {
   const dispatch = useDispatch()
@@ -28,8 +29,14 @@ function Home() {
 
   return (
     <Styled.Wrapper>
-      <RecentSongs songs={recentSongs?.tj}/>
-      <RecentSongs songs={recentSongs?.ky}/>
+      <RecentSongs
+        songs={recentSongs?.tj}
+        brand={Brand.TJ}
+      />
+      <RecentSongs
+        songs={recentSongs?.ky}
+        brand={Brand.KY}
+      />
     </Styled.Wrapper>
   )
 }

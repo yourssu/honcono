@@ -6,3 +6,7 @@ export const Wrapper = styled.div`
   width: 100%;
   margin: 16px 0;
 `
+
+export const Title = styled.div`
+  padding: 8px;
+`

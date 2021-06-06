@@ -1,4 +1,4 @@
-import { pressedStyle, styled } from '@yourssu/design-system'
+import { styled } from '@yourssu/design-system'
 
 export const Wrapper = styled.div`
   display: flex;
