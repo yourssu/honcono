@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import {
   Icon,
+  IconSize,
   Text,
   Typography,
 } from '@yourssu/design-system'
@@ -15,22 +16,26 @@ interface SongComponentProps {
 function SongComponent({
   song = {},
 }: SongComponentProps) {
-  const HeaderComponent = useMemo(() => (
-    <Styled.Header>
+  const ContentComponent = useMemo(() => (
+    <Styled.ContentWrapper>
       <Styled.Title>
         <Text typo={Typography.Subtitle1}>
           {song.title}
         </Text>
       </Styled.Title>
-      <Styled.Number>
-        <Text typo={Typography.Subtitle2}>
-          {song.no}
+
+      <Styled.Artist>
+        <Text
+          typo={Typography.Body1}
+          color="textTertiary"
+        >
+          {song.singer}
         </Text>
-      </Styled.Number>
-    </Styled.Header>
+      </Styled.Artist>
+    </Styled.ContentWrapper>
   ), [
-    song.no,
     song.title,
+    song.singer,
   ])
 
   return (
@@ -39,16 +44,15 @@ function SongComponent({
         <Icon
           name="ic_star_line"
           color="buttonPoint"
-          marginRight={8}
+          size={IconSize.M}
+          marginRight={16}
         />
-        <Styled.ContentWrapper>
-          { HeaderComponent }
-          <Styled.Artist>
-            <Text typo={Typography.Body1}>
-              {song.singer}
-            </Text>
-          </Styled.Artist>
-        </Styled.ContentWrapper>
+          { ContentComponent }
+        <Styled.Number>
+          <Text typo={Typography.Subtitle2}>
+            {song.no}
+          </Text>
+        </Styled.Number>
       </Styled.Wrapper>
     </>
   )

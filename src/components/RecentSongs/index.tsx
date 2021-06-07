@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import _ from 'lodash'
 import {
-  Divider,
   Text,
   Typography,
 } from '@yourssu/design-system'
@@ -33,7 +32,8 @@ function RecentSongs({
       {
         songs.map((song) => (
           <Fragment key={song.no}>
-            <Divider />
+            <Styled.Divider
+            />
             <SongComponent
               song={song}
             />

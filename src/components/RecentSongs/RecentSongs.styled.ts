@@ -1,4 +1,4 @@
-import { styled } from '@yourssu/design-system'
+import { styled, Divider as DividerElement } from '@yourssu/design-system'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -8,5 +8,10 @@ export const Wrapper = styled.div`
 `
 
 export const Title = styled.div`
-  padding: 8px;
+  padding: 20px;
+`
+
+export const Divider = styled(DividerElement)`
+  width: calc(100% - 40px);
+  margin: 0 20px;
 `

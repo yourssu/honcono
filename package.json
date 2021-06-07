@@ -12,7 +12,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/redux-saga": "^0.10.5",
-    "@yourssu/design-system": "^1.0.13",
+    "@yourssu/design-system": "^1.0.14",
     "axios": "^0.21.1",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
