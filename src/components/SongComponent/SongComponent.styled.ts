@@ -8,6 +8,10 @@ export const Wrapper = styled.div`
   padding: 20px;
 
   cursor: pointer;
+
+  &:hover {
+    background-color: ${({ foundation }) => foundation?.theme.bgPressed};
+  }
 `
 
 export const ContentWrapper = styled.div`

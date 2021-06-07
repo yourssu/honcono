@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import {
   Icon,
   IconSize,
@@ -8,6 +8,7 @@ import {
 
 import { SongType } from '../../types'
 import * as Styled from './SongComponent.styled'
+import useDetail from '../../hooks/useDetail'
 
 interface SongComponentProps {
   song?: SongType
@@ -16,6 +17,15 @@ interface SongComponentProps {
 function SongComponent({
   song = {},
 }: SongComponentProps) {
+  const { showDetail } = useDetail()
+
+  const handleClickWrapper = useCallback(() => {
+    showDetail(song)
+  }, [
+    showDetail,
+    song,
+  ])
+
   const ContentComponent = useMemo(() => (
     <Styled.ContentWrapper>
       <Styled.Title>
@@ -40,7 +50,7 @@ function SongComponent({
 
   return (
     <>
-      <Styled.Wrapper>
+      <Styled.Wrapper onClick={handleClickWrapper}>
         <Icon
           name="ic_star_line"
           color="buttonPoint"
