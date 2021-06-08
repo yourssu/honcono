@@ -6,14 +6,14 @@ import RecentSongs from '../../components/RecentSongs'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import * as Styled from './Home.styled'
-import { Brand } from '../../types'
 
 function Home() {
   const dispatch = useDispatch()
   const recentSongs = useSelector(Selector.getRecentSongs)
+  const currentBrand = useSelector(Selector.getBrand)
 
   useEffect(() => {
-    if (_.isEmpty(recentSongs.tj)) {
+    if (_.isEmpty(recentSongs)) {
       dispatch(actions.requesetGetRecentSongs())
     }
   }, [
@@ -30,12 +30,8 @@ function Home() {
   return (
     <Styled.Wrapper>
       <RecentSongs
-        songs={recentSongs?.tj}
-        brand={Brand.TJ}
-      />
-      <RecentSongs
-        songs={recentSongs?.ky}
-        brand={Brand.KY}
+        songs={recentSongs}
+        brand={currentBrand}
       />
     </Styled.Wrapper>
   )

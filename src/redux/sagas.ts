@@ -1,39 +1,27 @@
-import { put, all, call, takeLatest } from 'redux-saga/effects'
+import { put, all, call, takeLatest, select } from 'redux-saga/effects'
 import { actions } from './actions'
 
 import * as AT from './actions/ActionTypes'
-import { getKyIndex, getTjIndex } from './apis'
+import { getRecentSongs } from './apis'
+import Selector from './selectors'
 
-function* getTjRecentSongs() {
+function* getRecentSongsSaga() {
   try {
     // @ts-ignore
-    const tjSongs = yield call(getTjIndex)
-    yield put(
-      actions.requesetGetTjRecentSongsSuccess(tjSongs)
-    )
-  } catch (error) {
-    console.error(error)
-  }
-}
-function* getKyRecentSongs() {
-  try {
+    const brand = yield select(Selector.getBrand)
     // @ts-ignore
-    const kySongs = yield call(getKyIndex)
+    const tjSongs = yield call(getRecentSongs, brand)
     yield put(
-      actions.requesetGetKyRecentSongsSuccess(kySongs)
+      actions.requesetGetRecentSongsSuccess(tjSongs)
     )
   } catch (error) {
     console.error(error)
   }
 }
 
-function* getRecentSongs() {
-  yield call(getTjRecentSongs)
-  yield call(getKyRecentSongs)
-}
 
 export default function* rootSaga() {
   yield all([
-    takeLatest(AT.REQUESET_GET_RECENT_SONGS, getRecentSongs),
+    takeLatest(AT.REQUESET_GET_RECENT_SONGS, getRecentSongsSaga),
   ])
 }

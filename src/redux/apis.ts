@@ -1,19 +1,19 @@
 import axios from 'axios'
-import { SearchReducer, SongType } from '../types'
+import { Brand, SearchType, SongType } from '../types'
 
-export async function getTjIndex() {
-  const link = 'https://api.manana.kr/karaoke.json?brand=tj'
+export async function getRecentSongs(brand: Brand) {
+  const link = `https://api.manana.kr/karaoke.json?brand=${brand}`
   const { data } = await axios.get(link)
   return data as SongType[]
 }
 
-export async function getKyIndex() {
-  const link = 'https://api.manana.kr/karaoke.json?brand=kumyoung'
-  const { data } = await axios.get(link)
-  return data as SongType[]
+export interface getSearchSongsProps {
+  keyword: string
+  type: SearchType
+  brand: Brand
 }
 
-export async function getSearchSongs({keyword, type, brand}: SearchReducer) {
+export async function getSearchSongs({keyword, type, brand}: getSearchSongsProps) {
   const  link = `https://api.manana.kr/karaoke/${type}/${keyword}.json?brand=${brand}`
   let { data } = await axios.get(link)
   return data

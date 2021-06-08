@@ -3,36 +3,22 @@ import * as AT from '../actions/ActionTypes';
 import { Action, Brand, RootState, SearchType } from '../../types'
 
 const initialState: RootState = {
+  brand: Brand.TJ,
   favoriteSongs: [],
   detailSong: {},
   searchReducer: {
     keyword: '',
-    brand: Brand.TJ,
     type: SearchType.Title,
   },
-  recentSongs: {
-    tj: [],
-    ky: [],
-  },
+  recentSongs: [],
 };
 
 const reducer = (state: RootState = initialState, action: Action): RootState => {
   switch (action.type) {
-    case AT.REQUESET_GET_TJ_RECENT_SONGS_SUCCESS:
+    case AT.REQUESET_GET_RECENT_SONGS_SUCCESS:
       return {
         ...state,
-        recentSongs: {
-          ...state.recentSongs,
-          tj: action.payload,
-        }
-      }
-    case AT.REQUESET_GET_KY_RECENT_SONGS_SUCCESS:
-      return {
-        ...state,
-        recentSongs: {
-          ...state.recentSongs,
-          ky: action.payload,
-        }
+        recentSongs: action.payload,
       }
 
     default:

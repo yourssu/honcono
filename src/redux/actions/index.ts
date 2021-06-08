@@ -16,13 +16,8 @@ const requesetGetRecentSongs = () => ({
   type: AT.REQUESET_GET_RECENT_SONGS,
 })
 
-const requesetGetTjRecentSongsSuccess = (songs: SongType[]) => ({
-  type: AT.REQUESET_GET_TJ_RECENT_SONGS_SUCCESS,
-  payload: songs
-})
-
-const requesetGetKyRecentSongsSuccess = (songs: SongType[]) => ({
-  type: AT.REQUESET_GET_KY_RECENT_SONGS_SUCCESS,
+const requesetGetRecentSongsSuccess = (songs: SongType[]) => ({
+  type: AT.REQUESET_GET_RECENT_SONGS_SUCCESS,
   payload: songs
 })
 
@@ -32,10 +27,8 @@ const requesetGetSearchSongs = (keyword: Pick<SearchReducer, 'keyword'>) => ({
 })
 
 interface SearchSongsPayload {
-  tjTitle: SongType[],
-  kyTitle: SongType[],
-  tjSinger: SongType[],
-  kySinger: SongType[],
+  byTitle: SongType[],
+  bySinger: SongType[],
 }
 
 const requesetGetSearchSongsSuccess = (searchSongsPayload: SearchSongsPayload) => ({
@@ -47,8 +40,7 @@ export const actions = {
   initFavorite,
   initFavoriteSuccess,
   requesetGetRecentSongs,
-  requesetGetTjRecentSongsSuccess,
-  requesetGetKyRecentSongsSuccess,
+  requesetGetRecentSongsSuccess,
   requesetGetSearchSongs,
   requesetGetSearchSongsSuccess,
 }

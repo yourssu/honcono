@@ -24,18 +24,13 @@ export enum SearchType {
 
 export interface SearchReducer {
   keyword: string
-  brand: Brand
   type: SearchType
 }
 
-export interface RecentReducer {
-  tj: SongType[]
-  ky: SongType[]
-}
-
 export interface RootState {
-    searchReducer: SearchReducer
-    recentSongs: RecentReducer
-    favoriteSongs: SongType[]
-    detailSong: SongType
+  brand: Brand
+  searchReducer: SearchReducer
+  recentSongs: SongType[]
+  favoriteSongs: SongType[]
+  detailSong: SongType
 }
