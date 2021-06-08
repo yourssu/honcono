@@ -7,6 +7,7 @@ import * as Styled from './App.styled'
 import { SongType } from './types'
 import { BottomSheet } from '@yourssu/design-system'
 import Detail from './components/Detail'
+import Search from './containers/Search.tsx'
 
 const { Provider } = DetailContext
 
@@ -47,6 +48,7 @@ function App() {
         <Styled.Content>
           <Router>
             <Route path="/" exact={true} component={Home} />
+            <Route path="/search" component={Search} />
           </Router>
         </Styled.Content>
       </Styled.Wrapper>

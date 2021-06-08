@@ -18,8 +18,9 @@ export enum Brand {
 }
 
 export enum SearchType {
-  Title = 'title',
+  Title = 'song',
   Singer = 'singer',
+  Number = 'no',
 }
 
 export interface SearchReducer {
