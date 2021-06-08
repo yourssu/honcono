@@ -1,39 +1,56 @@
 import * as AT from './ActionTypes';
 
 //import { createAction } from '@reduxjs/toolkit';
-import { SearchReducer, SongType } from '../../types';
+import { SearchType, SongType } from '../../types';
 
 const initFavorite = () => ({
   type: AT.INIT_FAVORITE,
 })
 
-const initFavoriteSuccess = (songs: SongType[]) => ({
+export interface initFavoriteSuccessPayload {
+  favoriteSongs: SongType[]
+}
+const initFavoriteSuccess = (payload: initFavoriteSuccessPayload) => ({
   type: AT.INIT_FAVORITE_SUCCESS,
-  payload: songs,
+  payload,
 })
 
 const requesetGetRecentSongs = () => ({
   type: AT.REQUESET_GET_RECENT_SONGS,
 })
 
-const requesetGetRecentSongsSuccess = (songs: SongType[]) => ({
+export interface requesetGetRecentSongsSuccessPayload {
+  recentSongs: SongType[]
+}
+const requesetGetRecentSongsSuccess = (payload: requesetGetRecentSongsSuccessPayload) => ({
   type: AT.REQUESET_GET_RECENT_SONGS_SUCCESS,
-  payload: songs
+  payload,
 })
 
-const requesetGetSearchSongs = (keyword: Pick<SearchReducer, 'keyword'>) => ({
+export interface requesetGetSearchSongsPayload {
+  keyword: string
+}
+const requesetGetSearchSongs = (payload: requesetGetSearchSongsPayload) => ({
   type: AT.REQUESET_GET_SEARCH_SONGS,
-  payload: keyword
+  payload
 })
 
-interface SearchSongsPayload {
+export interface SearchSongsPayload {
   byTitle: SongType[],
   bySinger: SongType[],
+  byNumber: SongType[],
 }
-
-const requesetGetSearchSongsSuccess = (searchSongsPayload: SearchSongsPayload) => ({
+const requesetGetSearchSongsSuccess = (payload: SearchSongsPayload) => ({
   type: AT.REQUESET_GET_SEARCH_SONGS_SUCCESS,
-  payload: searchSongsPayload
+  payload,
+})
+
+export interface changeSearchTypePayload {
+  type: SearchType
+}
+const changeSearchType = (payload: changeSearchTypePayload) => ({
+  type: AT.CHANGE_SEARCH_TYPE,
+  payload,
 })
 
 export const actions = {
@@ -43,7 +60,9 @@ export const actions = {
   requesetGetRecentSongsSuccess,
   requesetGetSearchSongs,
   requesetGetSearchSongsSuccess,
+  changeSearchType,
 }
+
 /* const initState = (localState: State) => ({
   type: INIT_STATE,
   payload: localState

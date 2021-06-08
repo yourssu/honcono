@@ -7,10 +7,6 @@ export const Wrapper = styled.div`
   margin: 16px 0;
 `
 
-export const Title = styled.div`
-  padding: 20px;
-`
-
 export const Divider = styled(DividerElement)`
   width: calc(100% - 40px);
   margin: 0 20px;

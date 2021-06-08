@@ -1,12 +1,13 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import _ from 'lodash'
 
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import * as Styled from './Search.styled'
 import { SegmentedControl } from '../../elements/SegmentedControl'
 import { SearchType } from '../../types'
+import SongComponent from '../../components/SongComponent'
+import SongList from '../../components/SongList'
 
 const SearchTypeMap = {
   [SearchType.Title]: '곡명',
@@ -16,37 +17,41 @@ const SearchTypeMap = {
 
 function Search() {
   const dispatch = useDispatch()
-  const recentSongs = useSelector(Selector.getRecentSongs)
+  const searchType = useSelector(Selector.getSearchType)
+  const searchResult = useSelector(Selector.getSearchSongs)
+
   const controlItems = useMemo(() => ([
     SearchType.Title,
     SearchType.Singer,
     SearchType.Number,
   ]), [])
 
-  const [selectedIndex, setIndex] = useState<number>(0)
+  const selectedIndex = useMemo(() => (
+    controlItems.findIndex(item => item === searchType)
+  ), [
+    controlItems,
+    searchType,
+  ])
 
-  useEffect(() => {
-    if (_.isEmpty(recentSongs)) {
-      dispatch(actions.requesetGetRecentSongs())
-    }
+  const handleSelectIndex = useCallback((index) => {
+    dispatch(actions.changeSearchType({type: controlItems[index]}))
   }, [
+    controlItems,
     dispatch,
-    recentSongs,
   ])
 
   useEffect(() => {
-    console.log(recentSongs)
-  }, [
-    recentSongs,
-  ])
+    dispatch(actions.requesetGetSearchSongs({ keyword: '10cm' }))
+  }, [dispatch])
 
   return (
     <Styled.Wrapper>
       <SegmentedControl
         contents={controlItems.map((item) => SearchTypeMap[item])}
         selectedOptionIndex={selectedIndex}
-        onChangeOption={setIndex}
+        onChangeOption={handleSelectIndex}
       />
+      <SongList songs={searchResult}/>
     </Styled.Wrapper>
   )
 }

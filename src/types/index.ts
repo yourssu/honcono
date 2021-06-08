@@ -1,6 +1,6 @@
-export interface Action<P = any> {
+export interface Action<P = undefined> {
     type: string
-    payload?: P
+    payload: P
 }
 
 export interface SongType {
@@ -26,6 +26,11 @@ export enum SearchType {
 export interface SearchReducer {
   keyword: string
   type: SearchType
+  result: {
+    song: SongType[]
+    singer: SongType[]
+    no: SongType[]
+  }
 }
 
 export interface RootState {
