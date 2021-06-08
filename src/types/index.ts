@@ -23,6 +23,12 @@ export enum SearchType {
   Number = 'no',
 }
 
+export const SearchTypeMap = {
+  [SearchType.Title]: '곡명',
+  [SearchType.Singer]: '가수명',
+  [SearchType.Number]: '번호',
+}
+
 export interface SearchReducer {
   keyword: string
   type: SearchType

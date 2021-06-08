@@ -1,19 +1,14 @@
 import React, { useCallback, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import _ from 'lodash'
+import { Text, Typography } from '@yourssu/design-system'
 
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import * as Styled from './Search.styled'
 import { SegmentedControl } from '../../elements/SegmentedControl'
-import { SearchType } from '../../types'
-import SongComponent from '../../components/SongComponent'
+import { SearchType, SearchTypeMap } from '../../types'
 import SongList from '../../components/SongList'
-
-const SearchTypeMap = {
-  [SearchType.Title]: '곡명',
-  [SearchType.Singer]: '가수명',
-  [SearchType.Number]: '번호',
-}
 
 function Search() {
   const dispatch = useDispatch()
@@ -44,14 +39,39 @@ function Search() {
     dispatch(actions.requesetGetSearchSongs({ keyword: '10cm' }))
   }, [dispatch])
 
+  const ResultComponent = useMemo(() => {
+    if (_.isEmpty(searchResult)) {
+      return (
+        <Styled.Title>
+          <Text typo={Typography.Title1}>
+            결과 없음 😕
+          </Text>
+        </Styled.Title>
+      )
+    }
+    return (
+      <>
+        <Styled.Title>
+          <Text typo={Typography.Title1}>
+            검색 결과
+          </Text>
+        </Styled.Title>
+        <SongList songs={searchResult}/>
+      </>
+    )
+  }, [searchResult])
+
   return (
     <Styled.Wrapper>
-      <SegmentedControl
-        contents={controlItems.map((item) => SearchTypeMap[item])}
-        selectedOptionIndex={selectedIndex}
-        onChangeOption={handleSelectIndex}
-      />
-      <SongList songs={searchResult}/>
+      <Styled.SegmentedControlWrapper>
+        <SegmentedControl
+          contents={controlItems.map((item) => SearchTypeMap[item])}
+          selectedOptionIndex={selectedIndex}
+          onChangeOption={handleSelectIndex}
+        />
+      </Styled.SegmentedControlWrapper>
+
+      { ResultComponent }
     </Styled.Wrapper>
   )
 }

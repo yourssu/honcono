@@ -9,6 +9,8 @@ export const Wrapper = styled.div`
 
 export const Content = styled.div`
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 560px;
   height: 100%;
