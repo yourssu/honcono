@@ -1,12 +1,21 @@
+import { TextField } from '@yourssu/design-system'
 import React from 'react'
+
+import * as Styled from './Navigation.styled'
+
+interface NavigationProps {
+
+}
 
 function Navigation({
 
-}) {
+}: NavigationProps) {
   return (
-    <div>
-      TODO
-    </div>
+    <Styled.Wrapper>
+      <Styled.SearchWrapper>
+        <TextField />
+      </Styled.SearchWrapper>
+    </Styled.Wrapper>
   )
 }
 

@@ -5,3 +5,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `
+
+export const SearchWrapper = styled.div`
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 20px;
+`
