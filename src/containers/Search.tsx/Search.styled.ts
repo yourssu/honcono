@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 
   width: 100%;
-  padding-top: 24px;
+  padding-top: 16px;
 `
 
 export const SegmentedControlWrapper = styled.div`

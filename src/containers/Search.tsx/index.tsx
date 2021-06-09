@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
 import { Text, Typography } from '@yourssu/design-system'
@@ -34,10 +34,6 @@ function Search() {
     controlItems,
     dispatch,
   ])
-
-  useEffect(() => {
-    dispatch(actions.requesetGetSearchSongs({ keyword: '10cm' }))
-  }, [dispatch])
 
   const ResultComponent = useMemo(() => {
     if (_.isEmpty(searchResult)) {
