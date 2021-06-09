@@ -4,7 +4,7 @@ import { Action, Brand, RootState, SearchType } from '../../types'
 
 const initialState: RootState = {
   brand: Brand.TJ,
-  favoriteSongs: [],
+  inboxSongs: [],
   detailSong: {},
   searchReducer: {
     keyword: '',
@@ -66,6 +66,18 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
           ...state.searchReducer,
           type: action.payload.type,
         }
+      }
+
+    case AT.ADD_INBOX_SONG:
+      return {
+        ...state,
+        inboxSongs: [...state.inboxSongs, action.payload.song]
+      }
+
+    case AT.DELETE_INBOX_SONG:
+      return {
+        ...state,
+        inboxSongs: state.inboxSongs.filter((song) => song.no !== action.payload.no)
       }
 
     default:

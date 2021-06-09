@@ -44,6 +44,6 @@ export interface RootState {
   brand: Brand
   searchReducer: SearchReducer
   recentSongs: SongType[]
-  favoriteSongs: SongType[]
+  inboxSongs: SongType[]
   detailSong: SongType
 }

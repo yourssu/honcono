@@ -3,18 +3,6 @@ import * as AT from './ActionTypes';
 //import { createAction } from '@reduxjs/toolkit';
 import { SearchType, SongType } from '../../types';
 
-const initFavorite = () => ({
-  type: AT.INIT_FAVORITE,
-})
-
-export interface initFavoriteSuccessPayload {
-  favoriteSongs: SongType[]
-}
-const initFavoriteSuccess = (payload: initFavoriteSuccessPayload) => ({
-  type: AT.INIT_FAVORITE_SUCCESS,
-  payload,
-})
-
 const requestGetRecentSongs = () => ({
   type: AT.REQUEST_GET_RECENT_SONGS,
 })
@@ -57,15 +45,32 @@ const changeSearchType = (payload: changeSearchTypePayload) => ({
   payload,
 })
 
+export interface addInboxSongPayload {
+  song: SongType,
+}
+const addInboxSong = (payload: addInboxSongPayload) => ({
+  type: AT.ADD_INBOX_SONG,
+  payload,
+})
+
+export interface deleteInboxSongPayload {
+  no: number,
+}
+const deleteInboxSong = (payload: deleteInboxSongPayload) => ({
+  type: AT.DELETE_INBOX_SONG,
+  payload,
+})
+
 export const actions = {
-  initFavorite,
-  initFavoriteSuccess,
   requestGetRecentSongs,
   requestGetRecentSongsSuccess,
   requestGetSearchSongs,
   requestGetSearchSongsSuccess,
   requestGetSearchSongsError,
   changeSearchType,
+
+  addInboxSong,
+  deleteInboxSong,
 }
 
 /* const initState = (localState: State) => ({

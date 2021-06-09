@@ -1,6 +1,10 @@
-import { styled } from '@yourssu/design-system'
+import { css, styled } from '@yourssu/design-system'
 
-export const Wrapper = styled.div`
+interface InboxFocusProps {
+  focusOnInbox: boolean
+}
+
+export const Wrapper = styled.div<InboxFocusProps>`
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -10,8 +14,22 @@ export const Wrapper = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ foundation }) => foundation?.theme.bgPressed};
+    background-color: ${({ foundation, focusOnInbox }) => (
+      focusOnInbox
+        ? foundation?.theme.bgNormal
+        : foundation?.theme.bgPressed
+    )};
   }
+`
+
+export const InboxWrapper = styled.div<InboxFocusProps>`
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+
+  ${({ focusOnInbox }) => (
+    focusOnInbox && css`opacity: 0.7;`
+  )}
 `
 
 export const ContentWrapper = styled.div`

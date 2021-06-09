@@ -25,6 +25,8 @@ const getSearchKeyword = (state: RootState) => state.searchReducer.keyword
 
 const getSearchType = (state: RootState) => state.searchReducer.type
 
+const getInboxSongs = (state: RootState) => state.inboxSongs
+
 const Selector = {
   getBrand,
   getRecentSongs,
@@ -34,6 +36,8 @@ const Selector = {
   isFetchingSearchSongs,
   getSearchKeyword,
   getSearchType,
+
+  getInboxSongs,
 }
 
 export default Selector

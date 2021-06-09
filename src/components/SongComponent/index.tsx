@@ -1,4 +1,4 @@
-import React, { forwardRef, Ref, useCallback, useMemo } from 'react'
+import React, { forwardRef, Ref, useCallback, useMemo, useState } from 'react'
 import {
   Icon,
   IconSize,
@@ -9,23 +9,77 @@ import {
 import { SongType } from '../../types'
 import * as Styled from './SongComponent.styled'
 import useDetail from '../../hooks/useDetail'
+import _ from 'lodash'
 
 interface SongComponentProps {
   song?: SongType
+  isInbox?: boolean
+  addInbox?: (song: SongType) => void
+  deleteInbox?: (song: SongType) => void
 }
 
 function SongComponent(
   {
     song = {},
+    isInbox = false,
+    addInbox = _.noop,
+    deleteInbox = _.noop,
   }: SongComponentProps,
   forwardedRef: Ref<HTMLDivElement>) {
   const { showDetail } = useDetail()
+  
+  const [focusOnInbox, setFocusOnInbox] = useState(false)
 
   const handleClickWrapper = useCallback(() => {
     showDetail(song)
   }, [
     showDetail,
     song,
+  ])
+
+  const handleClickInbox = useCallback((event: React.MouseEvent) => {
+    event.stopPropagation()
+
+    if (isInbox) {
+      deleteInbox(song)
+    } else {
+      addInbox(song)
+    }
+  }, [
+    addInbox,
+    deleteInbox,
+    isInbox,
+    song,
+  ])
+
+  const IconComponent = useMemo(() => (
+    <Styled.InboxWrapper
+      focusOnInbox={focusOnInbox}
+      onClick={handleClickInbox}
+      onMouseEnter={() => setFocusOnInbox(true)}
+      onMouseLeave={() => setFocusOnInbox(false)}
+    >
+      { isInbox || focusOnInbox
+        ? (
+          <Icon
+            name="ic_star_filled"
+            color="buttonPoint"
+            size={IconSize.M}
+            marginRight={16}
+          />
+        ) : (
+          <Icon
+            name="ic_star_line"
+            color="buttonPoint"
+            size={IconSize.M}
+            marginRight={16}
+          />
+      ) }
+    </Styled.InboxWrapper>
+  ), [
+    handleClickInbox,
+    focusOnInbox,
+    isInbox,
   ])
 
   const ContentComponent = useMemo(() => (
@@ -55,13 +109,9 @@ function SongComponent(
       <Styled.Wrapper
         ref={forwardedRef}
         onClick={handleClickWrapper}
+        focusOnInbox={focusOnInbox}
       >
-        <Icon
-          name="ic_star_line"
-          color="buttonPoint"
-          size={IconSize.M}
-          marginRight={16}
-        />
+          { IconComponent }
           { ContentComponent }
         <Styled.Number>
           <Text typo={Typography.Subtitle2}>

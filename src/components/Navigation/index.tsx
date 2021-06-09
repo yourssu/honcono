@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory } from 'react-router-dom'
 import { Text, TextField } from '@yourssu/design-system'
@@ -57,6 +57,25 @@ function Navigation() {
     history.push('/recent')
   }, [history])
 
+  const SearchComponent = useMemo(() => {
+
+    return (
+      <Styled.SearchWrapper>
+        <TextField
+          value={keyword}
+          onChange={handleKeywordChange}
+          onKeyDown={handleKeyDown}
+          allowClear
+          placeholder="검색어를 입력하세요"
+          leftContent={{
+            icon: 'ic_search_line',
+            iconColor: 'buttonNormal',
+          }}
+        />
+      </Styled.SearchWrapper>
+    )
+  }, [handleKeyDown, handleKeywordChange, keyword])
+
   return (
     <Styled.Wrapper>
       <Styled.Header>
@@ -71,19 +90,8 @@ function Navigation() {
           </Text>
         </Styled.Recent>
       </Styled.Header>
-      <Styled.SearchWrapper>
-        <TextField
-          value={keyword}
-          onChange={handleKeywordChange}
-          onKeyDown={handleKeyDown}
-          allowClear
-          placeholder="검색어를 입력하세요"
-          leftContent={{
-            icon: 'ic_search_line',
-            iconColor: 'buttonNormal',
-          }}
-        />
-      </Styled.SearchWrapper>
+
+      { SearchComponent }
     </Styled.Wrapper>
   )
 }
