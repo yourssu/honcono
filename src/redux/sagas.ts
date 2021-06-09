@@ -18,15 +18,20 @@ function* getRecentSongsSaga() {
       })
     )
   } catch (error) {
-    yield put(
-      actions.requestGetSearchSongsError()
-    )
+    console.error(error)
   }
 }
 
 // @ts-ignore
 function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) {
   try {
+    // @ts-ignore
+    const prevKeyword = yield select(Selector.getSearchKeyword)
+    if (payload.keyword === prevKeyword) {
+      yield put(
+        actions.requestGetSearchSongsError()
+      )
+    }
     // @ts-ignore
     const brand = yield select(Selector.getBrand)
 
@@ -59,7 +64,9 @@ function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) 
       })
     )
   } catch (error) {
-    console.error(error)
+    yield put(
+      actions.requestGetSearchSongsError()
+    )
   }
 }
 

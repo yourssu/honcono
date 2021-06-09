@@ -26,12 +26,6 @@ function Home() {
     recentSongs,
   ])
 
-  useEffect(() => {
-    console.log(recentSongs)
-  }, [
-    recentSongs,
-  ])
-
   return (
     <Styled.Wrapper>
 

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { RouteComponentProps } from 'react-router-dom'
 import _ from 'lodash'
 import { Text, Typography } from '@yourssu/design-system'
 
@@ -11,8 +12,9 @@ import SongList from '../../components/SongList'
 import { Spinner } from '../../elements/Spinner/Spinner.styled'
 import * as Styled from './Search.styled'
 
-function Search() {
+function Search({ location }: RouteComponentProps) {
   const dispatch = useDispatch()
+
   const [pageNumber, setPageNumber] = useState(0)
 
   const searchType = useSelector(Selector.getSearchType)

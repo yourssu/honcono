@@ -49,7 +49,7 @@ function App() {
           <Router>
             <Navigation />
             <Route path="/" exact={true} component={Home} />
-            <Route path="/search" component={Search} />
+            <Route path="/search/:keyword" component={Search} />
           </Router>
         </Styled.Content>
       </Styled.Wrapper>

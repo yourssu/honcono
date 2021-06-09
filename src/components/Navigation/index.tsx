@@ -20,7 +20,7 @@ function Navigation() {
     if (!newKeyword) {
       return
     }
-    history.push(`/search?keyword=${newKeyword}`)
+    history.push(`/search/${newKeyword}`)
     dispatch(actions.requestGetSearchSongs({ keyword: newKeyword }))
   }, [
     dispatch,
