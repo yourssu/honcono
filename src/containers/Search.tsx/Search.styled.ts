@@ -19,5 +19,7 @@ export const Title = styled.div`
 `
 
 export const SpinnerWarpper = styled.div`
-  padding-top: 80px;
+  display: flex;
+  align-items: center;
+  height: 30%;
 `

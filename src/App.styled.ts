@@ -1,6 +1,7 @@
 import { styled } from "@yourssu/design-system";
 
 export const Wrapper = styled.div`
+  box-sizing: border-box;
   width: 100vw;
   display: flex;
   justify-content: center;
@@ -13,7 +14,7 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 560px;
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
