@@ -22,7 +22,6 @@ function App() {
   }, [])
 
   const hideDetail = useCallback(() => {
-    setDetail(undefined)
     setShow(false)
   }, [])
 

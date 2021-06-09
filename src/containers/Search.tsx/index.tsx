@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
 import { Text, Typography } from '@yourssu/design-system'
@@ -12,8 +12,33 @@ import SongList from '../../components/SongList'
 
 function Search() {
   const dispatch = useDispatch()
+  const [pageNumber, setPageNumber] = useState(0)
+
   const searchType = useSelector(Selector.getSearchType)
-  const searchResult = useSelector(Selector.getSearchSongs)
+  const keyword = useSelector(Selector.getSearchKeyword)
+  const searchedSongList = useSelector(Selector.getSearchSongsPage(pageNumber))
+  const hasNextPage = useSelector(Selector.hasNextSearchSongsPage(pageNumber))
+
+  const observer = useRef<IntersectionObserver>()
+  const scrollTriggerRef = useCallback((node) => {
+    if (observer.current) observer.current.disconnect()
+    observer.current = new IntersectionObserver((entries) => {
+      if(entries[0].isIntersecting && hasNextPage) {
+        setPageNumber(pageNumber + 1)
+      }
+    })
+    if (node) observer.current.observe(node)
+  }, [
+    pageNumber,
+    hasNextPage,
+  ])
+
+  useEffect(function resetPageNumber() {
+    setPageNumber(0)
+  }, [
+    searchType,
+    keyword,
+  ])
 
   const controlItems = useMemo(() => ([
     SearchType.Title,
@@ -28,7 +53,7 @@ function Search() {
     searchType,
   ])
 
-  const handleSelectIndex = useCallback((index) => {
+  const handleChangeSearchType = useCallback((index) => {
     dispatch(actions.changeSearchType({type: controlItems[index]}))
   }, [
     controlItems,
@@ -36,7 +61,7 @@ function Search() {
   ])
 
   const ResultComponent = useMemo(() => {
-    if (_.isEmpty(searchResult)) {
+    if (_.isEmpty(searchedSongList)) {
       return (
         <Styled.Title>
           <Text typo={Typography.Title1}>
@@ -52,10 +77,17 @@ function Search() {
             검색 결과
           </Text>
         </Styled.Title>
-        <SongList songs={searchResult}/>
+
+        <SongList
+          songs={searchedSongList}
+          scrollTriggerRef={scrollTriggerRef}
+        />
       </>
     )
-  }, [searchResult])
+  }, [
+    scrollTriggerRef,
+    searchedSongList,
+  ])
 
   return (
     <Styled.Wrapper>
@@ -63,7 +95,7 @@ function Search() {
         <SegmentedControl
           contents={controlItems.map((item) => SearchTypeMap[item])}
           selectedOptionIndex={selectedIndex}
-          onChangeOption={handleSelectIndex}
+          onChangeOption={handleChangeSearchType}
         />
       </Styled.SegmentedControlWrapper>
 

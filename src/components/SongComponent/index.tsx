@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { forwardRef, Ref, useCallback, useMemo } from 'react'
 import {
   Icon,
   IconSize,
@@ -14,9 +14,11 @@ interface SongComponentProps {
   song?: SongType
 }
 
-function SongComponent({
-  song = {},
-}: SongComponentProps) {
+function SongComponent(
+  {
+    song = {},
+  }: SongComponentProps,
+  forwardedRef: Ref<HTMLDivElement>) {
   const { showDetail } = useDetail()
 
   const handleClickWrapper = useCallback(() => {
@@ -50,7 +52,10 @@ function SongComponent({
 
   return (
     <>
-      <Styled.Wrapper onClick={handleClickWrapper}>
+      <Styled.Wrapper
+        ref={forwardedRef}
+        onClick={handleClickWrapper}
+      >
         <Icon
           name="ic_star_line"
           color="buttonPoint"
@@ -68,4 +73,4 @@ function SongComponent({
   )
 }
 
-export default SongComponent
+export default forwardRef(SongComponent)
