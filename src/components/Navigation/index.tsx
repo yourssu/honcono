@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory } from 'react-router-dom'
-import { Text, TextField } from '@yourssu/design-system'
+import { Text, TextField, TextFieldType } from '@yourssu/design-system'
 
 import { DEBOUNCE_DELAY } from '../../constants'
 import { actions } from '../../redux/actions'
@@ -62,6 +62,7 @@ function Navigation() {
     return (
       <Styled.SearchWrapper>
         <TextField
+          type={TextFieldType.Search}
           value={keyword}
           onChange={handleKeywordChange}
           onKeyDown={handleKeyDown}
