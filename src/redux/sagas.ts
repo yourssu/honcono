@@ -1,6 +1,6 @@
 import { put, all, call, takeLatest, select } from 'redux-saga/effects'
 import { Action, SearchType } from '../types'
-import { actions, requesetGetSearchSongsPayload } from './actions'
+import { actions, requestGetSearchSongsPayload } from './actions'
 
 import * as AT from './actions/ActionTypes'
 import { getRecentSongs, getSearchSongs } from './apis'
@@ -13,19 +13,19 @@ function* getRecentSongsSaga() {
     // @ts-ignore
     const recentSongs = yield call(getRecentSongs, brand)
     yield put(
-      actions.requesetGetRecentSongsSuccess({
+      actions.requestGetRecentSongsSuccess({
         recentSongs,
       })
     )
   } catch (error) {
     yield put(
-      actions.requesetGetSearchSongsError()
+      actions.requestGetSearchSongsError()
     )
   }
 }
 
 // @ts-ignore
-function* getSearchSongsSaga({ payload }: Action<requesetGetSearchSongsPayload>) {
+function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) {
   try {
     // @ts-ignore
     const brand = yield select(Selector.getBrand)
@@ -52,7 +52,7 @@ function* getSearchSongsSaga({ payload }: Action<requesetGetSearchSongsPayload>)
     ])
 
     yield put(
-      actions.requesetGetSearchSongsSuccess({
+      actions.requestGetSearchSongsSuccess({
         byTitle,
         bySinger,
         byNumber,
@@ -65,7 +65,7 @@ function* getSearchSongsSaga({ payload }: Action<requesetGetSearchSongsPayload>)
 
 export default function* rootSaga() {
   yield all([
-    takeLatest(AT.REQUESET_GET_RECENT_SONGS, getRecentSongsSaga),
-    takeLatest(AT.REQUESET_GET_SEARCH_SONGS, getSearchSongsSaga),
+    takeLatest(AT.REQUEST_GET_RECENT_SONGS, getRecentSongsSaga),
+    takeLatest(AT.REQUEST_GET_SEARCH_SONGS, getSearchSongsSaga),
   ])
 }

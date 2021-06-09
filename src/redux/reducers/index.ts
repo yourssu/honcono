@@ -21,13 +21,13 @@ const initialState: RootState = {
 
 const reducer = (state: RootState = initialState, action: Action<any>): RootState => {
   switch (action.type) {
-    case AT.REQUESET_GET_RECENT_SONGS_SUCCESS:
+    case AT.REQUEST_GET_RECENT_SONGS_SUCCESS:
       return {
         ...state,
         recentSongs: action.payload.recentSongs,
       }
 
-    case AT.REQUESET_GET_SEARCH_SONGS:
+    case AT.REQUEST_GET_SEARCH_SONGS:
       return {
         ...state,
         searchReducer: {
@@ -37,7 +37,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         }
       }
 
-    case AT.REQUESET_GET_SEARCH_SONGS_SUCCESS:
+    case AT.REQUEST_GET_SEARCH_SONGS_SUCCESS:
       return {
         ...state,
         searchReducer: {
@@ -50,7 +50,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
           },
         }
       }
-    case AT.REQUESET_GET_SEARCH_SONGS_ERROR:
+    case AT.REQUEST_GET_SEARCH_SONGS_ERROR:
       return {
         ...state,
         searchReducer: {

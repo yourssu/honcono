@@ -15,23 +15,23 @@ const initFavoriteSuccess = (payload: initFavoriteSuccessPayload) => ({
   payload,
 })
 
-const requesetGetRecentSongs = () => ({
-  type: AT.REQUESET_GET_RECENT_SONGS,
+const requestGetRecentSongs = () => ({
+  type: AT.REQUEST_GET_RECENT_SONGS,
 })
 
-export interface requesetGetRecentSongsSuccessPayload {
+export interface requestGetRecentSongsSuccessPayload {
   recentSongs: SongType[]
 }
-const requesetGetRecentSongsSuccess = (payload: requesetGetRecentSongsSuccessPayload) => ({
-  type: AT.REQUESET_GET_RECENT_SONGS_SUCCESS,
+const requestGetRecentSongsSuccess = (payload: requestGetRecentSongsSuccessPayload) => ({
+  type: AT.REQUEST_GET_RECENT_SONGS_SUCCESS,
   payload,
 })
 
-export interface requesetGetSearchSongsPayload {
+export interface requestGetSearchSongsPayload {
   keyword: string
 }
-const requesetGetSearchSongs = (payload: requesetGetSearchSongsPayload) => ({
-  type: AT.REQUESET_GET_SEARCH_SONGS,
+const requestGetSearchSongs = (payload: requestGetSearchSongsPayload) => ({
+  type: AT.REQUEST_GET_SEARCH_SONGS,
   payload
 })
 
@@ -40,13 +40,13 @@ export interface SearchSongsPayload {
   bySinger: SongType[],
   byNumber: SongType[],
 }
-const requesetGetSearchSongsSuccess = (payload: SearchSongsPayload) => ({
-  type: AT.REQUESET_GET_SEARCH_SONGS_SUCCESS,
+const requestGetSearchSongsSuccess = (payload: SearchSongsPayload) => ({
+  type: AT.REQUEST_GET_SEARCH_SONGS_SUCCESS,
   payload,
 })
 
-const requesetGetSearchSongsError = () => ({
-  type: AT.REQUESET_GET_SEARCH_SONGS_ERROR,
+const requestGetSearchSongsError = () => ({
+  type: AT.REQUEST_GET_SEARCH_SONGS_ERROR,
 })
 
 export interface changeSearchTypePayload {
@@ -60,11 +60,11 @@ const changeSearchType = (payload: changeSearchTypePayload) => ({
 export const actions = {
   initFavorite,
   initFavoriteSuccess,
-  requesetGetRecentSongs,
-  requesetGetRecentSongsSuccess,
-  requesetGetSearchSongs,
-  requesetGetSearchSongsSuccess,
-  requesetGetSearchSongsError,
+  requestGetRecentSongs,
+  requestGetRecentSongsSuccess,
+  requestGetSearchSongs,
+  requestGetSearchSongsSuccess,
+  requestGetSearchSongsError,
   changeSearchType,
 }
 

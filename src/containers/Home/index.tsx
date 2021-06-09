@@ -19,7 +19,7 @@ function Home() {
 
   useEffect(() => {
     if (_.isEmpty(recentSongs)) {
-      dispatch(actions.requesetGetRecentSongs())
+      dispatch(actions.requestGetRecentSongs())
     }
   }, [
     dispatch,

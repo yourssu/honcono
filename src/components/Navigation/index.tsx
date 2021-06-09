@@ -21,7 +21,7 @@ function Navigation() {
       return
     }
     history.push(`/search?keyword=${newKeyword}`)
-    dispatch(actions.requesetGetSearchSongs({ keyword: newKeyword }))
+    dispatch(actions.requestGetSearchSongs({ keyword: newKeyword }))
   }, [
     dispatch,
     history,
