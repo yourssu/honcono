@@ -53,14 +53,24 @@ function Navigation() {
   const handleClickLogo = useCallback(() => {
     history.push('/')
   }, [history])
+  const handleClickRecent = useCallback(() => {
+    history.push('/recent')
+  }, [history])
 
   return (
     <Styled.Wrapper>
-      <Styled.Logo onClick={handleClickLogo}>
-        <Text>
-          홈
-        </Text>
-      </Styled.Logo>
+      <Styled.Header>
+        <Styled.Logo onClick={handleClickLogo}>
+          <Text>
+            홈
+          </Text>
+        </Styled.Logo>
+        <Styled.Recent onClick={handleClickRecent}>
+          <Text>
+            최신곡
+          </Text>
+        </Styled.Recent>
+      </Styled.Header>
       <Styled.SearchWrapper>
         <TextField
           value={keyword}

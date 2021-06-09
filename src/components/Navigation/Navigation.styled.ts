@@ -5,10 +5,23 @@ export const Wrapper = styled.div`
   flex-direction: column;
 
   width: 100%;
-  padding-top: 20px;
+`
+
+export const Header = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding: 0 20px;
+  height: 32px;
 `
 
 export const Logo = styled.div`
+  cursor: pointer;
+`
+
+export const Recent = styled.div`
+  margin-left: auto;
   cursor: pointer;
 `
 

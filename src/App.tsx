@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import DetailContext from './contexts/DetailContext'
-import Home from './containers/Home'
+import Recent from './containers/Recent'
 import * as Styled from './App.styled'
 import { SongType } from './types'
 import { BottomSheet } from '@yourssu/design-system'
@@ -48,7 +48,8 @@ function App() {
         <Styled.Content>
           <Router>
             <Navigation />
-            <Route path="/" exact={true} component={Home} />
+            <Route path="/" exact={true} component={Recent} />
+            <Route path="/recent" exact={true} component={Recent} />
             <Route path="/search/:keyword" component={Search} />
           </Router>
         </Styled.Content>

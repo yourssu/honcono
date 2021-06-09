@@ -9,10 +9,10 @@ import {
 import SongList from '../../components/SongList'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
-import * as Styled from './Home.styled'
+import * as Styled from './Recent.styled'
 import { parseBrand } from '../../utils'
 
-function Home() {
+function Recent() {
   const dispatch = useDispatch()
   const recentSongs = useSelector(Selector.getRecentSongs)
   const currentBrand = useSelector(Selector.getBrand)
@@ -41,4 +41,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Recent
