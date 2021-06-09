@@ -47,8 +47,8 @@ function App() {
     }}>
       <Styled.Wrapper>
         <Styled.Content>
-          <Navigation />
           <Router>
+            <Navigation />
             <Route path="/" exact={true} component={Home} />
             <Route path="/search" component={Search} />
           </Router>
