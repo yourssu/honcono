@@ -32,6 +32,7 @@ export const SearchTypeMap = {
 export interface SearchReducer {
   keyword: string
   type: SearchType
+  isFetching: boolean
   result: {
     song: SongType[]
     singer: SongType[]

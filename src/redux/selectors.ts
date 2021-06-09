@@ -19,6 +19,8 @@ const hasNextSearchSongsPage = (page: number) => createSelector(
   (searchSongState) => searchSongState.length > page * PAGE_SIZE
 )
 
+const isFetchingSearchSongs = (state: RootState) => state.searchReducer.isFetching
+
 const getSearchKeyword = (state: RootState) => state.searchReducer.keyword
 
 const getSearchType = (state: RootState) => state.searchReducer.type
@@ -29,6 +31,7 @@ const Selector = {
   getSearchSongs,
   getSearchSongsPage,
   hasNextSearchSongsPage,
+  isFetchingSearchSongs,
   getSearchKeyword,
   getSearchType,
 }

@@ -5,10 +5,11 @@ import { Text, Typography } from '@yourssu/design-system'
 
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
-import * as Styled from './Search.styled'
 import { SegmentedControl } from '../../elements/SegmentedControl'
 import { SearchType, SearchTypeMap } from '../../types'
 import SongList from '../../components/SongList'
+import { Spinner } from '../../elements/Spinner/Spinner.styled'
+import * as Styled from './Search.styled'
 
 function Search() {
   const dispatch = useDispatch()
@@ -17,6 +18,7 @@ function Search() {
   const searchType = useSelector(Selector.getSearchType)
   const keyword = useSelector(Selector.getSearchKeyword)
   const searchedSongList = useSelector(Selector.getSearchSongsPage(pageNumber))
+  const isFetching = useSelector(Selector.isFetchingSearchSongs)
   const hasNextPage = useSelector(Selector.hasNextSearchSongsPage(pageNumber))
 
   const observer = useRef<IntersectionObserver>()
@@ -61,6 +63,14 @@ function Search() {
   ])
 
   const ResultComponent = useMemo(() => {
+    if (isFetching) {
+      return (
+        <Styled.SpinnerWarpper>
+          <Spinner />
+        </Styled.SpinnerWarpper>
+      )
+    }
+
     if (_.isEmpty(searchedSongList)) {
       return (
         <Styled.Title>
@@ -70,6 +80,7 @@ function Search() {
         </Styled.Title>
       )
     }
+
     return (
       <>
         <Styled.Title>
@@ -85,6 +96,7 @@ function Search() {
       </>
     )
   }, [
+    isFetching,
     scrollTriggerRef,
     searchedSongList,
   ])

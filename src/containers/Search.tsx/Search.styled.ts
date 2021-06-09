@@ -3,6 +3,7 @@ import { styled } from '@yourssu/design-system'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
 
   width: 100%;
   padding-top: 16px;
@@ -15,4 +16,8 @@ export const SegmentedControlWrapper = styled.div`
 export const Title = styled.div`
   margin-top: 20px;
   margin-left: 20px;
+`
+
+export const SpinnerWarpper = styled.div`
+  padding-top: 80px;
 `

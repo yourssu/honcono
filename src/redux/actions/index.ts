@@ -45,6 +45,10 @@ const requesetGetSearchSongsSuccess = (payload: SearchSongsPayload) => ({
   payload,
 })
 
+const requesetGetSearchSongsError = () => ({
+  type: AT.REQUESET_GET_SEARCH_SONGS_ERROR,
+})
+
 export interface changeSearchTypePayload {
   type: SearchType
 }
@@ -60,6 +64,7 @@ export const actions = {
   requesetGetRecentSongsSuccess,
   requesetGetSearchSongs,
   requesetGetSearchSongsSuccess,
+  requesetGetSearchSongsError,
   changeSearchType,
 }
 

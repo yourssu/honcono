@@ -9,6 +9,7 @@ const initialState: RootState = {
   searchReducer: {
     keyword: '',
     type: SearchType.Title,
+    isFetching: false,
     result: {
       song: [],
       singer: [],
@@ -32,6 +33,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         searchReducer: {
           ...state.searchReducer,
           keyword: action.payload.keyword,
+          isFetching: true,
         }
       }
 
@@ -40,11 +42,20 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         ...state,
         searchReducer: {
           ...state.searchReducer,
+          isFetching: false,
           result: {
             song: action.payload.byTitle,
             singer: action.payload.bySinger,
             no: action.payload.byNumber,
           },
+        }
+      }
+    case AT.REQUESET_GET_SEARCH_SONGS_ERROR:
+      return {
+        ...state,
+        searchReducer: {
+          ...state.searchReducer,
+          isFetching: false,
         }
       }
 

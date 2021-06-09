@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory } from 'react-router-dom'
-import { TextField } from '@yourssu/design-system'
+import { Text, TextField } from '@yourssu/design-system'
 
 import { DEBOUNCE_DELAY } from '../../constants'
 import { actions } from '../../redux/actions'
@@ -50,8 +50,17 @@ function Navigation() {
     keyword,
   ])
 
+  const handleClickLogo = useCallback(() => {
+    history.push('/')
+  }, [history])
+
   return (
     <Styled.Wrapper>
+      <Styled.Logo onClick={handleClickLogo}>
+        <Text>
+          홈
+        </Text>
+      </Styled.Logo>
       <Styled.SearchWrapper>
         <TextField
           value={keyword}

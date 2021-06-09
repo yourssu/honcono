@@ -8,6 +8,10 @@ export const Wrapper = styled.div`
   padding-top: 20px;
 `
 
+export const Logo = styled.div`
+  cursor: pointer;
+`
+
 export const SearchWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
