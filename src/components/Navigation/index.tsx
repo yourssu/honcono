@@ -1,10 +1,11 @@
-import { TextField } from '@yourssu/design-system'
 import React, { useCallback, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory } from 'react-router-dom'
+import { TextField } from '@yourssu/design-system'
+
+import { DEBOUNCE_DELAY } from '../../constants'
 import { actions } from '../../redux/actions'
 import Selector from '../../redux/selectors'
-
 import * as Styled from './Navigation.styled'
 
 function Navigation() {
@@ -33,7 +34,7 @@ function Navigation() {
     }
     timer.current = setTimeout(() => {
       dispatchSearch(newKeyword)
-    }, 400)
+    }, DEBOUNCE_DELAY)
     setKeyword(newKeyword)
   }, [dispatchSearch])
 
