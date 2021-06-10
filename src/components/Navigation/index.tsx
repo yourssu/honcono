@@ -1,7 +1,7 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory } from 'react-router-dom'
-import { Text, TextField, TextFieldType } from '@yourssu/design-system'
+import { Text, TextField } from '@yourssu/design-system'
 
 import { DEBOUNCE_DELAY } from '../../constants'
 import { actions } from '../../redux/actions'
@@ -13,6 +13,10 @@ function Navigation() {
   const history = useHistory()
   const searchKeyword = useSelector(Selector.getSearchKeyword)
   const [keyword, setKeyword] = useState(searchKeyword)
+
+  useEffect(() => {
+    setKeyword(searchKeyword)
+  }, [searchKeyword])
 
   const timer = useRef<NodeJS.Timeout>()
 
@@ -62,7 +66,6 @@ function Navigation() {
     return (
       <Styled.SearchWrapper>
         <TextField
-          type={TextFieldType.Search}
           value={keyword}
           onChange={handleKeywordChange}
           onKeyDown={handleKeyDown}
@@ -75,7 +78,11 @@ function Navigation() {
         />
       </Styled.SearchWrapper>
     )
-  }, [handleKeyDown, handleKeywordChange, keyword])
+  }, [
+    handleKeyDown,
+    handleKeywordChange,
+    keyword,
+  ])
 
   return (
     <Styled.Wrapper>

@@ -1,7 +1,7 @@
 * {
   -webkit-tap-highlight-color:rgba(255,255,255,0);
   -webkit-touch-callout: none;
-	font-family: Avenir, "-apple-system Noto Sans KR", sans-serif !important;
+	font-family: "-apple-system Noto Sans KR", Avenir, sans-serif !important;
 }
 
 html, body, div, span, applet, object, iframe,
