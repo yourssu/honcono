@@ -11,3 +11,9 @@ export const Divider = styled(DividerElement)`
   width: calc(100% - 40px);
   margin: 0 20px;
 `
+
+export const SpinnerWarpper = styled.div`
+  display: flex;
+  align-items: center;
+  height: 40%;
+`

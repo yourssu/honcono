@@ -1,3 +1,3 @@
 export default interface SpinnerProps {
-  size: number
+  size?: number
 }

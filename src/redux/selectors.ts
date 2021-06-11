@@ -9,7 +9,7 @@ const getIsIntialized = (state: RootState) => state.initialized
 
 const getBrand = (state: RootState) => state.brand
 
-const getRecentSongs = (state: RootState) => state.recentSongs
+const getRecentReducer = (state: RootState) => state.recentReducer
 
 const getSearchSongs = (state: RootState) => state.searchReducer.result[state.searchReducer.segment]
 
@@ -29,7 +29,7 @@ const getSearchKeyword = (state: RootState) => state.searchReducer.keyword
 
 const getSearchSegment = (state: RootState) => state.searchReducer.segment
 
-const getInboxSongs = (state: RootState) => state.inboxSongs
+const getInboxSongs = (state: RootState) => state.inbox[state.brand]
 
 const Selector = {
   getRootState,
@@ -37,7 +37,7 @@ const Selector = {
 
   getBrand,
 
-  getRecentSongs,
+  getRecentReducer,
 
   getSearchSongs,
   getSearchSongsPage,

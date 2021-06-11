@@ -8,14 +8,17 @@ import SongComponent from '../SongComponent'
 import * as Styled from './SongList.styled'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
+import { Spinner } from '../../elements/Spinner'
 
 interface SongListProps {
   songs?: SongType[]
+  isLoading?: boolean
   scrollTriggerRef?: Ref<HTMLDivElement>
 }
 
 function SongList({
   songs = [],
+  isLoading,
   scrollTriggerRef,
 }: SongListProps) {
   const dispatch = useDispatch()
@@ -32,6 +35,14 @@ function SongList({
   }, [dispatch])
 
   if (_.isNil(songs) || !_.isArray(songs)) { return null }
+
+  if (isLoading) {
+    return (
+      <Styled.SpinnerWarpper>
+        <Spinner />
+      </Styled.SpinnerWarpper>
+    )
+  }
 
   return (
     <Styled.Wrapper>

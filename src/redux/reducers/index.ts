@@ -4,20 +4,26 @@ import { Action, Brand, RootState, SearchSegment } from '../../types'
 
 const initialState: RootState = {
   initialized: false,
-  brand: Brand.TJ,
-  inboxSongs: [],
+  brand: Brand.KY,
   detailSong: {},
+  inbox: {
+    [Brand.TJ]: [],
+    [Brand.KY]: [],
+  },
   searchReducer: {
     keyword: '',
     segment: SearchSegment.Title,
     isFetching: false,
     result: {
-      song: [],
-      singer: [],
-      no: [],
+      [SearchSegment.Title]: [],
+      [SearchSegment.Singer]: [],
+      [SearchSegment.Number]: [],
     }
   },
-  recentSongs: [],
+  recentReducer: {
+    songs: [],
+    isFetching: false,
+  },
 };
 
 const reducer = (state: RootState = initialState, action: Action<any>): RootState => {
@@ -28,10 +34,37 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         initialized: true,
       }
 
+    case AT.CHANGE_BRAND:
+      return {
+        ...state,
+        brand: action.payload.brand
+      }
+
+    case AT.REQUEST_GET_RECENT_SONGS:
+      return {
+        ...state,
+        recentReducer: {
+          ...state.recentReducer,
+          isFetching: true,
+        }
+      }
+
     case AT.REQUEST_GET_RECENT_SONGS_SUCCESS:
       return {
         ...state,
-        recentSongs: action.payload.recentSongs,
+        recentReducer: {
+          songs: action.payload.recentSongs,
+          isFetching: false,
+        },
+      }
+
+    case AT.REQUEST_GET_RECENT_SONGS_ERROR:
+      return {
+        ...state,
+        recentReducer: {
+          ...state.recentReducer,
+          isFetching: false,
+        },
       }
 
     case AT.REQUEST_GET_SEARCH_SONGS:
@@ -78,13 +111,22 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
     case AT.ADD_INBOX_SONG:
       return {
         ...state,
-        inboxSongs: [action.payload.song, ...state.inboxSongs]
+        inbox: {
+          ...state.inbox,
+          [state.brand]: [
+            action.payload.song,
+            ...state.inbox[state.brand],
+          ],
+        },
       }
 
     case AT.DELETE_INBOX_SONG:
       return {
         ...state,
-        inboxSongs: state.inboxSongs.filter((song) => song.no !== action.payload.no)
+        inbox: {
+          ...state.inbox,
+          [state.brand]: state.inbox[state.brand].filter((song) => song.no !== action.payload.no)
+        },
       }
 
     default:

@@ -1,13 +1,21 @@
 import * as AT from './ActionTypes';
 
 //import { createAction } from '@reduxjs/toolkit';
-import { RootState, SearchSegment, SongType } from '../../types';
+import { Brand, RootState, SearchSegment, SongType } from '../../types';
 
 interface initStatePayload {
   state: RootState
 }
 const initState = (payload: initStatePayload) => ({
   type: AT.INIT_STATE,
+  payload,
+})
+
+interface changeBrandPayload {
+  brand: Brand
+}
+const changeBrand = (payload: changeBrandPayload) => ({
+  type: AT.CHANGE_BRAND,
   payload,
 })
 
@@ -21,6 +29,9 @@ export interface requestGetRecentSongsSuccessPayload {
 const requestGetRecentSongsSuccess = (payload: requestGetRecentSongsSuccessPayload) => ({
   type: AT.REQUEST_GET_RECENT_SONGS_SUCCESS,
   payload,
+})
+const requestGetRecentSongsError = () => ({
+  type: AT.REQUEST_GET_RECENT_SONGS_ERROR,
 })
 
 export interface requestGetSearchSongsPayload {
@@ -71,9 +82,11 @@ const deleteInboxSong = (payload: deleteInboxSongPayload) => ({
 
 export const actions = {
   initState,
+  changeBrand,
 
   requestGetRecentSongs,
   requestGetRecentSongsSuccess,
+  requestGetRecentSongsError,
 
   requestGetSearchSongs,
   requestGetSearchSongsSuccess,

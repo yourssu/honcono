@@ -17,6 +17,11 @@ export enum Brand {
   KY = 'kumyoung',
 }
 
+export const BrandNameMap = {
+  [Brand.TJ]: '태진',
+  [Brand.KY]: '금영',
+}
+
 export enum SearchSegment {
   Title = 'song',
   Singer = 'singer',
@@ -34,17 +39,27 @@ export interface SearchReducer {
   segment: SearchSegment
   isFetching: boolean
   result: {
-    song: SongType[]
-    singer: SongType[]
-    no: SongType[]
+    [SearchSegment.Title]: SongType[]
+    [SearchSegment.Singer]: SongType[]
+    [SearchSegment.Number]: SongType[]
   }
+}
+
+export interface Inbox {
+  [Brand.TJ]: SongType[]
+  [Brand.KY]: SongType[]
+}
+
+export interface RecentReducer {
+  songs: SongType[]
+  isFetching: boolean
 }
 
 export interface RootState {
   initialized: boolean
   brand: Brand
   searchReducer: SearchReducer
-  recentSongs: SongType[]
-  inboxSongs: SongType[]
+  recentReducer: RecentReducer
+  inbox: Inbox
   detailSong: SongType
 }

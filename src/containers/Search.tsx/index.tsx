@@ -9,7 +9,6 @@ import { actions } from '../../redux/actions'
 import { SegmentedControl } from '../../elements/SegmentedControl'
 import { SearchSegment, SearchSegmentMap } from '../../types'
 import SongList from '../../components/SongList'
-import { Spinner } from '../../elements/Spinner/Spinner.styled'
 import * as Styled from './Search.styled'
 
 function Search({ location }: RouteComponentProps) {
@@ -77,15 +76,7 @@ function Search({ location }: RouteComponentProps) {
   ])
 
   const ResultComponent = useMemo(() => {
-    if (isFetching) {
-      return (
-        <Styled.SpinnerWarpper>
-          <Spinner />
-        </Styled.SpinnerWarpper>
-      )
-    }
-
-    if (_.isEmpty(searchedSongList)) {
+    if (!isFetching && _.isEmpty(searchedSongList)) {
       return (
         <Styled.Title>
           <Text typo={Typography.Title1}>
@@ -105,6 +96,7 @@ function Search({ location }: RouteComponentProps) {
 
         <SongList
           songs={searchedSongList}
+          isLoading={isFetching}
           scrollTriggerRef={scrollTriggerRef}
         />
       </>

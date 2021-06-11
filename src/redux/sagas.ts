@@ -19,7 +19,9 @@ function* getRecentSongsSaga() {
       })
     )
   } catch (error) {
-    console.error(error)
+    yield put(
+      actions.requestGetRecentSongsError()
+    )
   }
 }
 

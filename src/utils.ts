@@ -25,3 +25,12 @@ export function getIntelligentSegment(
 
   return SearchSegment.Title
 }
+
+export function toggleBrand(brand: Brand): Brand {
+  switch(brand) {
+    case Brand.TJ:
+      return Brand.KY
+    case Brand.KY:
+      return Brand.TJ
+  }
+}

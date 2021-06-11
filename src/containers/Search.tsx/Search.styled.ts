@@ -17,9 +17,3 @@ export const Title = styled.div`
   margin-top: 20px;
   margin-left: 20px;
 `
-
-export const SpinnerWarpper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 30%;
-`
