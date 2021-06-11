@@ -56,8 +56,8 @@ function SongComponent(
     <Styled.InboxWrapper
       focusOnInbox={focusOnInbox}
       onClick={handleClickInbox}
-      onMouseEnter={() => setFocusOnInbox(true)}
-      onMouseLeave={() => setFocusOnInbox(false)}
+      onPointerEnter={() => setFocusOnInbox(true)}
+      onPointerLeave={() => setFocusOnInbox(false)}
     >
       { isInbox || focusOnInbox
         ? (
@@ -85,7 +85,7 @@ function SongComponent(
   const ContentComponent = useMemo(() => (
     <Styled.ContentWrapper>
       <Styled.Title>
-        <Text typo={Typography.Subtitle1}>
+        <Text typo={Typography.Subtitle2}>
           {song.title}
         </Text>
       </Styled.Title>
@@ -111,13 +111,15 @@ function SongComponent(
         onClick={handleClickWrapper}
         focusOnInbox={focusOnInbox}
       >
-          { IconComponent }
-          { ContentComponent }
         <Styled.Number>
-          <Text typo={Typography.Subtitle2}>
+          <Text typo={Typography.Subtitle3}>
             {song.no}
           </Text>
         </Styled.Number>
+
+        { ContentComponent }
+
+        { IconComponent }
       </Styled.Wrapper>
     </>
   )

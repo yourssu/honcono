@@ -46,5 +46,8 @@ export const Artist = styled.div`
 `
 
 export const Number = styled.div`
-
+  display: flex;
+  justify-content: center;
+  margin: 0 12px 0 4px;
+  width: 64px;
 `
