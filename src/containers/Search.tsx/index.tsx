@@ -70,7 +70,7 @@ function Search({ location }: RouteComponentProps) {
   ])
 
   const handleChangeSearchSegment = useCallback((index) => {
-    dispatch(actions.changeSearchSegment({type: controlItems[index]}))
+    dispatch(actions.changeSearchSegment({segment: controlItems[index]}))
   }, [
     controlItems,
     dispatch,

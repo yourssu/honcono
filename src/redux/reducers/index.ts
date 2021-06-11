@@ -9,7 +9,7 @@ const initialState: RootState = {
   detailSong: {},
   searchReducer: {
     keyword: '',
-    type: SearchSegment.Title,
+    segment: SearchSegment.Title,
     isFetching: false,
     result: {
       song: [],
@@ -71,7 +71,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         ...state,
         searchReducer: {
           ...state.searchReducer,
-          type: action.payload.type,
+          segment: action.payload.segment,
         }
       }
 

@@ -46,7 +46,7 @@ const requestGetSearchSongsError = () => ({
 })
 
 export interface changeSearchSegmentPayload {
-  type: SearchSegment
+  segment: SearchSegment
 }
 const changeSearchSegment = (payload: changeSearchSegmentPayload) => ({
   type: AT.CHANGE_SEARCH_SEGMENT,

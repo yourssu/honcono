@@ -31,7 +31,7 @@ export const SearchSegmentMap = {
 
 export interface SearchReducer {
   keyword: string
-  type: SearchSegment
+  segment: SearchSegment
   isFetching: boolean
   result: {
     song: SongType[]

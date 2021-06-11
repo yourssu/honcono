@@ -11,7 +11,7 @@ const getBrand = (state: RootState) => state.brand
 
 const getRecentSongs = (state: RootState) => state.recentSongs
 
-const getSearchSongs = (state: RootState) => state.searchReducer.result[state.searchReducer.type]
+const getSearchSongs = (state: RootState) => state.searchReducer.result[state.searchReducer.segment]
 
 const getSearchSongsPage = (page: number) => createSelector(
   getSearchSongs,
@@ -27,7 +27,7 @@ const isFetchingSearchSongs = (state: RootState) => state.searchReducer.isFetchi
 
 const getSearchKeyword = (state: RootState) => state.searchReducer.keyword
 
-const getSearchSegment = (state: RootState) => state.searchReducer.type
+const getSearchSegment = (state: RootState) => state.searchReducer.segment
 
 const getInboxSongs = (state: RootState) => state.inboxSongs
 

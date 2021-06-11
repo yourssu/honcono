@@ -1,5 +1,6 @@
 import { put, all, call, takeLatest, select } from 'redux-saga/effects'
 import { Action, SearchSegment } from '../types'
+import { getIntelligentSegment } from '../utils'
 import { actions, requestGetSearchSongsPayload } from './actions'
 
 import * as AT from './actions/ActionTypes'
@@ -56,13 +57,26 @@ function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) 
       }),
     ])
 
-    yield put(
-      actions.requestGetSearchSongsSuccess({
-        byTitle,
-        bySinger,
-        byNumber,
-      })
+    const newSearchSegment = getIntelligentSegment(
+      byTitle.length,
+      bySinger.length,
+      byNumber.length,
     )
+
+    yield all([
+      put (
+        actions.changeSearchSegment({
+          segment: newSearchSegment
+        })
+      ),
+      put (
+        actions.requestGetSearchSongsSuccess({
+          byTitle,
+          bySinger,
+          byNumber,
+        })
+      ),
+    ]) 
   } catch (error) {
     yield put(
       actions.requestGetSearchSongsError()
