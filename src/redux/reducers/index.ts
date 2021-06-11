@@ -78,7 +78,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
     case AT.ADD_INBOX_SONG:
       return {
         ...state,
-        inboxSongs: [...state.inboxSongs, action.payload.song]
+        inboxSongs: [action.payload.song, ...state.inboxSongs]
       }
 
     case AT.DELETE_INBOX_SONG:
