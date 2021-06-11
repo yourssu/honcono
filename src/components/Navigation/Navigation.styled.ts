@@ -1,10 +1,14 @@
 import { pressedStyle, styled } from "@yourssu/design-system";
 
 export const Wrapper = styled.div`
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   display: flex;
   flex-direction: column;
-
   width: 100%;
+
+  background-color: ${({ foundation }) => foundation?.theme.bgNormal};
 `
 
 export const Header = styled.div`

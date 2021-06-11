@@ -69,14 +69,14 @@ function Navigation() {
       <Styled.SearchWrapper>
         <TextField
           value={keyword}
-          onChange={handleKeywordChange}
-          onKeyDown={handleKeyDown}
           allowClear
           placeholder="검색어를 입력하세요"
           leftContent={{
             icon: 'ic_search_line',
             iconColor: 'buttonNormal',
           }}
+          onKeyDown={handleKeyDown}
+          onChange={handleKeywordChange}
         />
       </Styled.SearchWrapper>
     )

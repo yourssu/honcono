@@ -47,14 +47,12 @@ function App() {
       hideDetail,
     }}>
       <Styled.Wrapper>
-        <Styled.Content>
-          <Router>
-            <Navigation />
-            <Route path="/" exact={true} component={Inbox} />
-            <Route path="/recent" exact={true} component={Recent} />
-            <Route path="/search/:keyword" component={Search} />
-          </Router>
-        </Styled.Content>
+        <Router>
+          <Navigation />
+          <Route path="/" exact={true} component={Inbox} />
+          <Route path="/recent" exact={true} component={Recent} />
+          <Route path="/search/:keyword" component={Search} />
+        </Router>
       </Styled.Wrapper>
 
       { BottomSheetComponent }
