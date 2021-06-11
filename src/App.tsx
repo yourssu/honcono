@@ -10,6 +10,7 @@ import Inbox from './containers/Inbox'
 import Search from './containers/Search.tsx'
 import Recent from './containers/Recent'
 import Navigation from './components/Navigation'
+import Initializer from './containers/Initializer'
 
 const { Provider } = DetailContext
 
@@ -57,6 +58,7 @@ function App() {
       </Styled.Wrapper>
 
       { BottomSheetComponent }
+      <Initializer />
     </Provider>
   );
 }

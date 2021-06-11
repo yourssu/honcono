@@ -1,7 +1,15 @@
 import * as AT from './ActionTypes';
 
 //import { createAction } from '@reduxjs/toolkit';
-import { SearchType, SongType } from '../../types';
+import { RootState, SearchType, SongType } from '../../types';
+
+interface initStatePayload {
+  state: RootState
+}
+const initState = (payload: initStatePayload) => ({
+  type: AT.INIT_STATE,
+  payload,
+})
 
 const requestGetRecentSongs = () => ({
   type: AT.REQUEST_GET_RECENT_SONGS,
@@ -62,8 +70,11 @@ const deleteInboxSong = (payload: deleteInboxSongPayload) => ({
 })
 
 export const actions = {
+  initState,
+
   requestGetRecentSongs,
   requestGetRecentSongsSuccess,
+
   requestGetSearchSongs,
   requestGetSearchSongsSuccess,
   requestGetSearchSongsError,
@@ -72,35 +83,3 @@ export const actions = {
   addInboxSong,
   deleteInboxSong,
 }
-
-/* const initState = (localState: State) => ({
-  type: INIT_STATE,
-  payload: localState
-});
-const changeKeyword = (key: string) => ({
-    type: SEARCH,
-    payload: key
-});
-const changeBrandFilter = (brand: number) => ({
-    type: BRAND_FILTER,
-    payload: brand
-});
-const changeTypeFilter = (type: number) => ({
-    type: SONG_FILTER,
-    payload: type
-});
-const addFavoriteSong = (song: SongType) => ({
-    type: ADD_FAV,
-    payload: song
-});
-const deleteFavoriteSong = (songNo: number) => ({
-    type: DEL_FAV,
-    payload: songNo
-});
-const openDetail = (song: SongType) => ({
-    type: OPEN_DETAIL,
-    payload: song
-});
-const closeDetail = () => ({
-    type: CLOSE_DETAIL
-}); */

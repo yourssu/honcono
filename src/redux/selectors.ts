@@ -3,6 +3,10 @@ import { createSelector } from 'reselect'
 import { PAGE_SIZE } from '../constants'
 import { RootState } from '../types'
 
+const getRootState = (state: RootState) => state
+
+const getIsIntialized = (state: RootState) => state.initialized
+
 const getBrand = (state: RootState) => state.brand
 
 const getRecentSongs = (state: RootState) => state.recentSongs
@@ -28,8 +32,13 @@ const getSearchType = (state: RootState) => state.searchReducer.type
 const getInboxSongs = (state: RootState) => state.inboxSongs
 
 const Selector = {
+  getRootState,
+  getIsIntialized,
+
   getBrand,
+
   getRecentSongs,
+
   getSearchSongs,
   getSearchSongsPage,
   hasNextSearchSongsPage,

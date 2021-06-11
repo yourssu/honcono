@@ -3,6 +3,7 @@ import * as AT from '../actions/ActionTypes';
 import { Action, Brand, RootState, SearchType } from '../../types'
 
 const initialState: RootState = {
+  initialized: false,
   brand: Brand.TJ,
   inboxSongs: [],
   detailSong: {},
@@ -21,6 +22,12 @@ const initialState: RootState = {
 
 const reducer = (state: RootState = initialState, action: Action<any>): RootState => {
   switch (action.type) {
+    case AT.INIT_STATE:
+      return {
+        ...action.payload.state,
+        initialized: true,
+      }
+
     case AT.REQUEST_GET_RECENT_SONGS_SUCCESS:
       return {
         ...state,

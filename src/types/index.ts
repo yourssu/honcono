@@ -41,6 +41,7 @@ export interface SearchReducer {
 }
 
 export interface RootState {
+  initialized: boolean
   brand: Brand
   searchReducer: SearchReducer
   recentSongs: SongType[]
