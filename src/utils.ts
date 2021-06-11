@@ -9,3 +9,4 @@ export function parseBrand(brand: Brand): 'TJ' | 'KY' {
       return 'KY'
   }
 }
+

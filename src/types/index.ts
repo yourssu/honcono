@@ -17,21 +17,21 @@ export enum Brand {
   KY = 'kumyoung',
 }
 
-export enum SearchType {
+export enum SearchSegment {
   Title = 'song',
   Singer = 'singer',
   Number = 'no',
 }
 
-export const SearchTypeMap = {
-  [SearchType.Title]: '곡명',
-  [SearchType.Singer]: '가수명',
-  [SearchType.Number]: '번호',
+export const SearchSegmentMap = {
+  [SearchSegment.Title]: '곡명',
+  [SearchSegment.Singer]: '가수명',
+  [SearchSegment.Number]: '번호',
 }
 
 export interface SearchReducer {
   keyword: string
-  type: SearchType
+  type: SearchSegment
   isFetching: boolean
   result: {
     song: SongType[]

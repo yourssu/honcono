@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Brand, SearchType, SongType } from '../types'
+import { Brand, SearchSegment, SongType } from '../types'
 
 export async function getRecentSongs(brand: Brand) {
   const link = `https://api.manana.kr/karaoke.json?brand=${brand}`
@@ -9,7 +9,7 @@ export async function getRecentSongs(brand: Brand) {
 
 export interface getSearchSongsProps {
   keyword: string
-  type: SearchType
+  type: SearchSegment
   brand: Brand
 }
 

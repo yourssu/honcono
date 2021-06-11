@@ -7,7 +7,7 @@ import { Text, Typography } from '@yourssu/design-system'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import { SegmentedControl } from '../../elements/SegmentedControl'
-import { SearchType, SearchTypeMap } from '../../types'
+import { SearchSegment, SearchSegmentMap } from '../../types'
 import SongList from '../../components/SongList'
 import { Spinner } from '../../elements/Spinner/Spinner.styled'
 import * as Styled from './Search.styled'
@@ -17,7 +17,7 @@ function Search({ location }: RouteComponentProps) {
 
   const [pageNumber, setPageNumber] = useState(0)
 
-  const searchType = useSelector(Selector.getSearchType)
+  const searchSegment = useSelector(Selector.getSearchSegment)
   const keyword = useSelector(Selector.getSearchKeyword)
   const searchedSongList = useSelector(Selector.getSearchSongsPage(pageNumber))
   const isFetching = useSelector(Selector.isFetchingSearchSongs)
@@ -52,25 +52,25 @@ function Search({ location }: RouteComponentProps) {
   useEffect(function resetPageNumber() {
     setPageNumber(0)
   }, [
-    searchType,
+    searchSegment,
     keyword,
   ])
 
   const controlItems = useMemo(() => ([
-    SearchType.Title,
-    SearchType.Singer,
-    SearchType.Number,
+    SearchSegment.Title,
+    SearchSegment.Singer,
+    SearchSegment.Number,
   ]), [])
 
   const selectedIndex = useMemo(() => (
-    controlItems.findIndex(item => item === searchType)
+    controlItems.findIndex(item => item === searchSegment)
   ), [
     controlItems,
-    searchType,
+    searchSegment,
   ])
 
-  const handleChangeSearchType = useCallback((index) => {
-    dispatch(actions.changeSearchType({type: controlItems[index]}))
+  const handleChangeSearchSegment = useCallback((index) => {
+    dispatch(actions.changeSearchSegment({type: controlItems[index]}))
   }, [
     controlItems,
     dispatch,
@@ -119,9 +119,9 @@ function Search({ location }: RouteComponentProps) {
     <Styled.Wrapper>
       <Styled.SegmentedControlWrapper>
         <SegmentedControl
-          contents={controlItems.map((item) => SearchTypeMap[item])}
+          contents={controlItems.map((item) => SearchSegmentMap[item])}
           selectedOptionIndex={selectedIndex}
-          onChangeOption={handleChangeSearchType}
+          onChangeOption={handleChangeSearchSegment}
         />
       </Styled.SegmentedControlWrapper>
 

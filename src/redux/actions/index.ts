@@ -1,7 +1,7 @@
 import * as AT from './ActionTypes';
 
 //import { createAction } from '@reduxjs/toolkit';
-import { RootState, SearchType, SongType } from '../../types';
+import { RootState, SearchSegment, SongType } from '../../types';
 
 interface initStatePayload {
   state: RootState
@@ -45,11 +45,11 @@ const requestGetSearchSongsError = () => ({
   type: AT.REQUEST_GET_SEARCH_SONGS_ERROR,
 })
 
-export interface changeSearchTypePayload {
-  type: SearchType
+export interface changeSearchSegmentPayload {
+  type: SearchSegment
 }
-const changeSearchType = (payload: changeSearchTypePayload) => ({
-  type: AT.CHANGE_SEARCH_TYPE,
+const changeSearchSegment = (payload: changeSearchSegmentPayload) => ({
+  type: AT.CHANGE_SEARCH_SEGMENT,
   payload,
 })
 
@@ -78,7 +78,7 @@ export const actions = {
   requestGetSearchSongs,
   requestGetSearchSongsSuccess,
   requestGetSearchSongsError,
-  changeSearchType,
+  changeSearchSegment,
 
   addInboxSong,
   deleteInboxSong,

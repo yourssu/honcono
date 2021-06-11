@@ -1,6 +1,6 @@
 import * as AT from '../actions/ActionTypes';
 
-import { Action, Brand, RootState, SearchType } from '../../types'
+import { Action, Brand, RootState, SearchSegment } from '../../types'
 
 const initialState: RootState = {
   initialized: false,
@@ -9,7 +9,7 @@ const initialState: RootState = {
   detailSong: {},
   searchReducer: {
     keyword: '',
-    type: SearchType.Title,
+    type: SearchSegment.Title,
     isFetching: false,
     result: {
       song: [],
@@ -66,7 +66,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         }
       }
 
-    case AT.CHANGE_SEARCH_TYPE:
+    case AT.CHANGE_SEARCH_SEGMENT:
       return {
         ...state,
         searchReducer: {

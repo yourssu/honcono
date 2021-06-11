@@ -27,7 +27,7 @@ const isFetchingSearchSongs = (state: RootState) => state.searchReducer.isFetchi
 
 const getSearchKeyword = (state: RootState) => state.searchReducer.keyword
 
-const getSearchType = (state: RootState) => state.searchReducer.type
+const getSearchSegment = (state: RootState) => state.searchReducer.type
 
 const getInboxSongs = (state: RootState) => state.inboxSongs
 
@@ -44,7 +44,7 @@ const Selector = {
   hasNextSearchSongsPage,
   isFetchingSearchSongs,
   getSearchKeyword,
-  getSearchType,
+  getSearchSegment,
 
   getInboxSongs,
 }

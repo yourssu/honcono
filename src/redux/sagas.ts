@@ -1,5 +1,5 @@
 import { put, all, call, takeLatest, select } from 'redux-saga/effects'
-import { Action, SearchType } from '../types'
+import { Action, SearchSegment } from '../types'
 import { actions, requestGetSearchSongsPayload } from './actions'
 
 import * as AT from './actions/ActionTypes'
@@ -39,19 +39,19 @@ function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) 
       // @ts-ignore
       call(getSearchSongs, {
         keyword: payload.keyword,
-        type: SearchType.Title,
+        type: SearchSegment.Title,
         brand,
       }),
       // @ts-ignore
       call(getSearchSongs, {
         keyword: payload.keyword,
-        type: SearchType.Singer,
+        type: SearchSegment.Singer,
         brand,
       }),
       // @ts-ignore
       call(getSearchSongs, {
         keyword: payload.keyword,
-        type: SearchType.Number,
+        type: SearchSegment.Number,
         brand,
       }),
     ])
