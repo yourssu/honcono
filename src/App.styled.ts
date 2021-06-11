@@ -16,6 +16,6 @@ export const Content = styled.div`
   max-width: 560px;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `
