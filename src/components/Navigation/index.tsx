@@ -7,10 +7,12 @@ import { DEBOUNCE_DELAY } from '../../constants'
 import { actions } from '../../redux/actions'
 import Selector from '../../redux/selectors'
 import * as Styled from './Navigation.styled'
+import BrandLogo from '../../assets/BrandLogo'
 
 function Navigation() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const brand = useSelector(Selector.getBrand)
   const searchKeyword = useSelector(Selector.getSearchKeyword)
   const [keyword, setKeyword] = useState(searchKeyword)
 
@@ -92,11 +94,9 @@ function Navigation() {
             홈
           </Text>
         </Styled.Logo>
-        <Styled.Recent onClick={handleClickRecent}>
-          <Text>
-            최신곡
-          </Text>
-        </Styled.Recent>
+        <Styled.Brand onClick={handleClickRecent}>
+          <BrandLogo brand={brand} size={32} />
+        </Styled.Brand>
       </Styled.Header>
 
       { SearchComponent }

@@ -1,4 +1,4 @@
-import { styled } from "@yourssu/design-system";
+import { pressedStyle, styled } from "@yourssu/design-system";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -20,9 +20,13 @@ export const Logo = styled.div`
   cursor: pointer;
 `
 
-export const Recent = styled.div`
+export const Brand = styled.div`
   margin-left: auto;
   cursor: pointer;
+
+  &:hover {
+    ${pressedStyle}
+  }
 `
 
 export const SearchWrapper = styled.div`
