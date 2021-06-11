@@ -4,7 +4,7 @@ import { Action, Brand, RootState, SearchSegment } from '../../types'
 
 const initialState: RootState = {
   initialized: false,
-  brand: Brand.KY,
+  brand: Brand.TJ,
   detailSong: {},
   inbox: {
     [Brand.TJ]: [],
