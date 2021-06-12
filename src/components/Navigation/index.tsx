@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory, RouteComponentProps } from 'react-router-dom'
 import { Text, TextField, TextFieldRef, Typography } from '@yourssu/design-system'
 
-import { DEBOUNCE_DELAY } from '../../constants'
+import { DEBOUNCE_DELAY, SearchSegment, SearchSegmentMap } from '../../constants'
 import { actions } from '../../redux/actions'
 import Selector from '../../redux/selectors'
 import * as Styled from './Navigation.styled'
 import BrandLogo from '../../assets/BrandLogo'
+import { SegmentedControl } from '../../elements/SegmentedControl'
 
 function Navigation({ location }: RouteComponentProps) {
   const dispatch = useDispatch()
@@ -15,6 +16,7 @@ function Navigation({ location }: RouteComponentProps) {
 
   const brand = useSelector(Selector.getBrand)
   const searchKeyword = useSelector(Selector.getSearchKeyword)
+  const searchSegment = useSelector(Selector.getSearchSegment)
 
   const [keyword, setKeyword] = useState(searchKeyword)
 
@@ -135,11 +137,47 @@ function Navigation({ location }: RouteComponentProps) {
     keyword,
   ])
 
+  const controlItems = useMemo(() => ([
+    SearchSegment.Title,
+    SearchSegment.Singer,
+    SearchSegment.Number,
+  ]), [])
+
+  const selectedIndex = useMemo(() => (
+    controlItems.findIndex(item => item === searchSegment)
+  ), [
+    controlItems,
+    searchSegment,
+  ])
+
+  const handleChangeSearchSegment = useCallback((index) => {
+    dispatch(actions.changeSearchSegment({segment: controlItems[index]}))
+  }, [
+    controlItems,
+    dispatch,
+  ])
+
+  const SegmentedControlComponent = useMemo(() => (
+    <Styled.SegmentedControlWrapper>
+      <SegmentedControl
+        contents={controlItems.map((item) => SearchSegmentMap[item])}
+        selectedOptionIndex={selectedIndex}
+        onChangeOption={handleChangeSearchSegment}
+      />
+    </Styled.SegmentedControlWrapper>
+  ), [
+    controlItems,
+    handleChangeSearchSegment,
+    selectedIndex,
+  ])
+
   return (
     <Styled.Wrapper>
       { HeaderComponent }
 
       { SearchComponent }
+
+      { isSearchPage && SegmentedControlComponent }
     </Styled.Wrapper>
   )
 }

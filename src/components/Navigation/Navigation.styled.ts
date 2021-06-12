@@ -56,6 +56,7 @@ export const BackButton = styled.div<BackButtonProps>`
   justify-content: center;
   align-items: center;
   align-self: stretch;
+  word-break: keep-all;
   cursor: pointer;
 
   ${({ foundation }) => foundation?.transition.getTransitionsCSS(['opacity', 'width', 'padding-right'])}
@@ -66,4 +67,8 @@ export const BackButton = styled.div<BackButtonProps>`
   &:active {
     ${pressedStyle}
   }
+`
+
+export const SegmentedControlWrapper = styled.div`
+  padding: 16px 20px 0 16px;
 `

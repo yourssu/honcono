@@ -6,10 +6,8 @@ import { Text, Typography } from '@yourssu/design-system'
 
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
-import { SegmentedControl } from '../../elements/SegmentedControl'
 import SongList from '../../components/SongList'
 import * as Styled from './Search.styled'
-import { SearchSegment, SearchSegmentMap } from '../../constants'
 
 function Search({ location }: RouteComponentProps) {
   const dispatch = useDispatch()
@@ -52,26 +50,6 @@ function Search({ location }: RouteComponentProps) {
     keyword,
   ])
 
-  const controlItems = useMemo(() => ([
-    SearchSegment.Title,
-    SearchSegment.Singer,
-    SearchSegment.Number,
-  ]), [])
-
-  const selectedIndex = useMemo(() => (
-    controlItems.findIndex(item => item === searchSegment)
-  ), [
-    controlItems,
-    searchSegment,
-  ])
-
-  const handleChangeSearchSegment = useCallback((index) => {
-    dispatch(actions.changeSearchSegment({segment: controlItems[index]}))
-  }, [
-    controlItems,
-    dispatch,
-  ])
-
   const ResultComponent = useMemo(() => {
     if (!isFetching && _.isEmpty(searchedSongList)) {
       return (
@@ -106,13 +84,6 @@ function Search({ location }: RouteComponentProps) {
 
   return (
     <Styled.Wrapper>
-      <Styled.SegmentedControlWrapper>
-        <SegmentedControl
-          contents={controlItems.map((item) => SearchSegmentMap[item])}
-          selectedOptionIndex={selectedIndex}
-          onChangeOption={handleChangeSearchSegment}
-        />
-      </Styled.SegmentedControlWrapper>
 
       { ResultComponent }
     </Styled.Wrapper>

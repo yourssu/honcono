@@ -6,14 +6,9 @@ export const Wrapper = styled.div`
   flex-grow: 1;
 
   width: 100%;
-  padding-top: 16px;
-`
-
-export const SegmentedControlWrapper = styled.div`
-  padding: 0 20px;
+  padding-top: 24px;
 `
 
 export const Title = styled.div`
-  margin-top: 20px;
   margin-left: 20px;
 `
