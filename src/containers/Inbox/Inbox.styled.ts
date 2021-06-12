@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
-  height: 100%;
   margin-top: 32px;
 `
 
@@ -20,6 +19,6 @@ export const Skeleton = styled.div`
   justify-content: center;
   align-items: center;
   & > * {
-    transform: translateY(-200%);
+    transform: translateY(-100%);
   }
 `

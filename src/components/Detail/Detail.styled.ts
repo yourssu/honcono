@@ -3,7 +3,7 @@ import { styled } from '@yourssu/design-system'
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0 20px 20px 20px;
+  padding: 0 20px env(safe-area-inset-bottom) 20px;
 `
 
 export const Header = styled.div`

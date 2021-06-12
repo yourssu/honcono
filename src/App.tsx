@@ -11,6 +11,7 @@ import Search from './containers/Search.tsx'
 import Recent from './containers/Recent'
 import Navigation from './components/Navigation'
 import Initializer from './containers/Initializer'
+import Footer from './components/Footer'
 
 const { Provider } = DetailContext
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/" exact={true} component={Inbox} />
           <Route path="/recent" exact={true} component={Recent} />
           <Route path="/search/:keyword" component={Search} />
+          <Footer />
         </Router>
       </Styled.Wrapper>
 
