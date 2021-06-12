@@ -54,6 +54,7 @@ function App() {
           <Route path="/" exact={true} component={Inbox} />
           <Route path="/recent" exact={true} component={Recent} />
           <Route path="/search/:keyword" component={Search} />
+          <Route path="/search" exact component={Search} />
           <Footer />
         </Router>
       </Styled.Wrapper>

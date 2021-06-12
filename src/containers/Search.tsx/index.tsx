@@ -38,14 +38,11 @@ function Search({ location }: RouteComponentProps) {
 
   useEffect(function intializeKeyword() {
     const urlKeyword = location.pathname.split('/search/')[1]
-    if (urlKeyword !== keyword) {
-      dispatch(actions.requestGetSearchSongs({ keyword: urlKeyword }))
-    }
+    dispatch(actions.requestGetSearchSongs({ keyword: urlKeyword }))
     console.log()
   }, [
     dispatch,
-    keyword,
-    location,
+    location.pathname,
   ])
 
   useEffect(function resetPageNumber() {

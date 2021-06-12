@@ -30,12 +30,12 @@ function* getRecentSongsSaga() {
 function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) {
   try {
     // @ts-ignore
-    const prevKeyword = yield select(Selector.getSearchKeyword)
-    if (payload.keyword === prevKeyword) {
-      yield put(
-        actions.requestGetSearchSongsError()
-      )
-    }
+    // const prevKeyword = yield select(Selector.getSearchKeyword)
+    // if (payload.keyword === prevKeyword) {
+    //   yield put(
+    //     actions.requestGetSearchSongsError()
+    //   )
+    // }
     // @ts-ignore
     const brand = yield select(Selector.getBrand)
 

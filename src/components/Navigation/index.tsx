@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { withRouter, useHistory } from 'react-router-dom'
-import { Text, TextField } from '@yourssu/design-system'
+import { withRouter, useHistory, RouteComponentProps } from 'react-router-dom'
+import { Text, TextField, TextFieldRef, Typography } from '@yourssu/design-system'
 
 import { DEBOUNCE_DELAY } from '../../constants'
 import { actions } from '../../redux/actions'
@@ -9,14 +9,20 @@ import Selector from '../../redux/selectors'
 import * as Styled from './Navigation.styled'
 import BrandLogo from '../../assets/BrandLogo'
 
-function Navigation() {
+function Navigation({ location }: RouteComponentProps) {
   const dispatch = useDispatch()
   const history = useHistory()
+
   const brand = useSelector(Selector.getBrand)
   const searchKeyword = useSelector(Selector.getSearchKeyword)
+
   const [keyword, setKeyword] = useState(searchKeyword)
 
-  useEffect(() => {
+  const searchFieldRef = useRef<TextFieldRef>(null)
+
+  const isSearchPage = useMemo(() => location.pathname.startsWith('/search'), [location.pathname])
+
+  useEffect(function handleKeywordChange() {
     setKeyword(searchKeyword)
   }, [searchKeyword])
 
@@ -31,6 +37,14 @@ function Navigation() {
   }, [
     dispatch,
     history,
+  ])
+
+  const handleFocus = useCallback(() => {
+    if (!isSearchPage) { history.push(`/search/${keyword}`) }
+  }, [
+    isSearchPage,
+    history,
+    keyword,
   ])
 
   const handleKeywordChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,18 +70,37 @@ function Navigation() {
     keyword,
   ])
 
-  const handleClickLogo = useCallback(() => {
+  const handleClickHome = useCallback(() => {
     history.push('/')
+    searchFieldRef.current?.blur()
   }, [history])
   const handleClickRecent = useCallback(() => {
     history.push('/recent')
   }, [history])
 
-  const SearchComponent = useMemo(() => {
+  const HeaderComponent = useMemo(() => (
+    <Styled.Header hide={isSearchPage}>
+      <Styled.Logo onClick={handleClickHome}>
+        <Text>
+          홈
+        </Text>
+      </Styled.Logo>
+      <Styled.Brand onClick={handleClickRecent}>
+        <BrandLogo brand={brand} size={32} />
+      </Styled.Brand>
+    </Styled.Header>
+  ), [
+    isSearchPage,
+    brand,
+    handleClickHome,
+    handleClickRecent,
+  ])
 
+  const SearchComponent = useMemo(() => {
     return (
       <Styled.SearchWrapper>
         <TextField
+          ref={searchFieldRef}
           value={keyword}
           allowClear
           placeholder="검색어를 입력하세요"
@@ -75,29 +108,36 @@ function Navigation() {
             icon: 'ic_search_line',
             iconColor: 'buttonNormal',
           }}
+          onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           onChange={handleKeywordChange}
         />
+
+        <Styled.BackButton
+          onClick={handleClickHome}
+          show={isSearchPage}
+        >
+          <Text
+            typo={Typography.Body1}
+            color="textPointed"
+          >
+            취소
+          </Text>
+        </Styled.BackButton>
       </Styled.SearchWrapper>
     )
   }, [
+    handleClickHome,
+    handleFocus,
     handleKeyDown,
     handleKeywordChange,
+    isSearchPage,
     keyword,
   ])
 
   return (
     <Styled.Wrapper>
-      <Styled.Header>
-        <Styled.Logo onClick={handleClickLogo}>
-          <Text>
-            홈
-          </Text>
-        </Styled.Logo>
-        <Styled.Brand onClick={handleClickRecent}>
-          <BrandLogo brand={brand} size={32} />
-        </Styled.Brand>
-      </Styled.Header>
+      { HeaderComponent }
 
       { SearchComponent }
     </Styled.Wrapper>

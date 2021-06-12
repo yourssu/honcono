@@ -11,13 +11,20 @@ export const Wrapper = styled.div`
   background-color: ${({ foundation }) => foundation?.theme.bgNormal};
 `
 
-export const Header = styled.div`
+interface HeaderProps {
+  hide?: boolean
+}
+
+export const Header = styled.div<HeaderProps>`
+  ${({ foundation }) => foundation?.transition.getTransitionsCSS('height')}
+
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  margin: 20px 0;
   padding: 0 20px;
-  height: 32px;
+  margin: ${({ hide }) => hide ? 10 : 20 }px 0;
+  height: ${({ hide }) => hide ? 0 : 32 }px;
+  overflow: hidden;
 `
 
 export const Logo = styled.div`
@@ -37,4 +44,26 @@ export const SearchWrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
   padding: 0 20px;
+  display: flex;
+`
+
+interface BackButtonProps {
+  show?: boolean
+}
+
+export const BackButton = styled.div<BackButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  cursor: pointer;
+
+  ${({ foundation }) => foundation?.transition.getTransitionsCSS(['opacity', 'width', 'padding-right'])}
+  opacity: ${({ show }) =>  show ? 1 : 0};
+  width: ${({ show }) =>  show ? 32 : 0}px;
+  padding-left: ${({ show }) =>  show ? 16 : 0}px;
+
+  &:active {
+    ${pressedStyle}
+  }
 `
