@@ -81,6 +81,15 @@ const deleteInboxSong = (payload: deleteInboxSongPayload) => ({
   payload,
 })
 
+export interface toggleInobxSongPayload {
+  song: SongType
+  isInboxSong: boolean
+}
+const toggleInboxSong = (payload: toggleInobxSongPayload) => ({
+  type: AT.TOGGLE_INBOX_SONG,
+  payload,
+})
+
 export const actions = {
   initState,
   changeBrand,
@@ -96,4 +105,5 @@ export const actions = {
 
   addInboxSong,
   deleteInboxSong,
+  toggleInboxSong,
 }

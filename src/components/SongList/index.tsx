@@ -1,12 +1,11 @@
 import React, { Fragment, Ref, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import _ from 'lodash'
 
 import { SongType } from '../../types'
 import { SCROLL_TRIGGER_INDEX } from '../../constants'
 import SongComponent from '../SongComponent'
 import * as Styled from './SongList.styled'
-import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import { Spinner } from '../../elements/Spinner'
 
@@ -22,16 +21,9 @@ function SongList({
   scrollTriggerRef,
 }: SongListProps) {
   const dispatch = useDispatch()
-  const inboxSongs = useSelector(Selector.getInboxSongs)
 
-  const handleAddInbox = useCallback((newSong: SongType) => {
-    dispatch(actions.addInboxSong({ song: newSong }))
-  }, [dispatch])
-
-  const handleDeleteInbox = useCallback((newSong: SongType) => {
-    if (!_.isNil(newSong.no)) {
-      dispatch(actions.deleteInboxSong({ no: newSong.no }))
-    }
+  const handleToggleInbox = useCallback((newSong: SongType, isInboxSong: boolean) => {
+    dispatch(actions.toggleInboxSong({ song: newSong, isInboxSong }))
   }, [dispatch])
 
   if (_.isNil(songs) || !_.isArray(songs)) { return null }
@@ -49,7 +41,6 @@ function SongList({
       {
         songs.map((song, index) => {
           const isLastTriggerIndex = !_.isNil(scrollTriggerRef) && songs.length - SCROLL_TRIGGER_INDEX === index
-          const isInboxSong = !!inboxSongs.find((_song) => _song.no === song.no && _song.brand === song.brand)
 
           return (
           <Fragment key={song.no}>
@@ -57,16 +48,12 @@ function SongList({
             { isLastTriggerIndex
               ? <SongComponent
                   song={song}
-                  isInbox={isInboxSong}
                   ref={scrollTriggerRef}
-                  addInbox={handleAddInbox}
-                  deleteInbox={handleDeleteInbox}
+                  toggleInbox={handleToggleInbox}
                 />
               : <SongComponent
                   song={song}
-                  isInbox={isInboxSong}
-                  addInbox={handleAddInbox}
-                  deleteInbox={handleDeleteInbox}
+                  toggleInbox={handleToggleInbox}
                 />
             }
           </Fragment>

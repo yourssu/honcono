@@ -2,7 +2,7 @@ import { put, all, call, takeLatest, select } from 'redux-saga/effects'
 import { SearchSegment } from '../constants'
 import { Action } from '../types'
 import { getIntelligentSegment } from '../utils'
-import { actions, requestGetSearchSongsPayload } from './actions'
+import { actions, requestGetSearchSongsPayload, toggleInobxSongPayload } from './actions'
 
 import * as AT from './actions/ActionTypes'
 import { getRecentSongs, getSearchSongs } from './apis'
@@ -87,9 +87,25 @@ function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) 
   }
 }
 
+function* toggleInboxSongSaga({ payload }: Action<toggleInobxSongPayload>) {
+  const song = payload.song
+  // @ts-ignore
+  const isInboxSong = payload.isInboxSong
+  if (isInboxSong) {
+    yield put(
+      actions.deleteInboxSong({ no: song.no! })
+    )
+  } else {
+    yield put(
+      actions.addInboxSong({ song })
+    )
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeLatest(AT.REQUEST_GET_RECENT_SONGS, getRecentSongsSaga),
     takeLatest(AT.REQUEST_GET_SEARCH_SONGS, getSearchSongsSaga),
+    takeLatest(AT.TOGGLE_INBOX_SONG, toggleInboxSongSaga),
   ])
 }

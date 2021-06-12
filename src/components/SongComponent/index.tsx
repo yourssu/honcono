@@ -1,4 +1,5 @@
 import React, { forwardRef, Ref, useCallback, useMemo, useState } from 'react'
+import { useSelector } from 'react-redux'
 import {
   Icon,
   IconSize,
@@ -10,23 +11,21 @@ import { SongType } from '../../types'
 import * as Styled from './SongComponent.styled'
 import useDetail from '../../hooks/useDetail'
 import _ from 'lodash'
+import Selector from '../../redux/selectors'
 
 interface SongComponentProps {
   song?: SongType
-  isInbox?: boolean
-  addInbox?: (song: SongType) => void
-  deleteInbox?: (song: SongType) => void
+  toggleInbox?: (song: SongType, isInboxSong: boolean) => void
 }
 
 function SongComponent(
   {
     song = {},
-    isInbox = false,
-    addInbox = _.noop,
-    deleteInbox = _.noop,
+    toggleInbox =  _.noop,
   }: SongComponentProps,
   forwardedRef: Ref<HTMLDivElement>) {
   const { showDetail } = useDetail()
+  const isInboxSong = useSelector(Selector.getIsInboxSong(song))
   
   const [focusOnInbox, setFocusOnInbox] = useState(false)
 
@@ -39,17 +38,11 @@ function SongComponent(
 
   const handleClickInbox = useCallback((event: React.MouseEvent) => {
     event.stopPropagation()
-
-    if (isInbox) {
-      deleteInbox(song)
-    } else {
-      addInbox(song)
-    }
+    toggleInbox(song, isInboxSong)
   }, [
-    addInbox,
-    deleteInbox,
-    isInbox,
+    toggleInbox,
     song,
+    isInboxSong,
   ])
 
   const IconComponent = useMemo(() => (
@@ -59,7 +52,7 @@ function SongComponent(
       onPointerEnter={() => setFocusOnInbox(true)}
       onPointerLeave={() => setFocusOnInbox(false)}
     >
-      { isInbox || focusOnInbox
+      { isInboxSong || focusOnInbox
         ? (
           <Icon
             name="ic_star_filled"
@@ -79,7 +72,7 @@ function SongComponent(
   ), [
     handleClickInbox,
     focusOnInbox,
-    isInbox,
+    isInboxSong,
   ])
 
   const ContentComponent = useMemo(() => (

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 
 import { PAGE_SIZE } from '../constants'
-import { RootState } from '../types'
+import { RootState, SongType } from '../types'
 
 const getRootState = (state: RootState) => state
 
@@ -31,6 +31,12 @@ const getSearchSegment = (state: RootState) => state.searchReducer.segment
 
 const getInboxSongs = (state: RootState) => state.inbox[state.brand]
 
+const getIsInboxSong = (song: SongType) => (state: RootState) => (
+  !!state.inbox[state.brand].find((_song) => (
+    _song.no === song.no && _song.brand === song.brand
+  ))
+)
+
 const Selector = {
   getRootState,
   getIsIntialized,
@@ -47,6 +53,7 @@ const Selector = {
   getSearchSegment,
 
   getInboxSongs,
+  getIsInboxSong,
 }
 
 export default Selector
