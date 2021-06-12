@@ -31,6 +31,7 @@ function App() {
     <BottomSheet
       show={show}
       onHide={hideDetail}
+      desktopWidth={500}
     >
       <Detail song={detail && detail}/>
     </BottomSheet>
