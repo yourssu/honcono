@@ -1,8 +1,8 @@
 import React from 'react'
 
-import TJ from './tj.png'
-import KY from './ky.png'
-import { Brand } from '../types'
+import TJImage from './tj.png'
+import KYImage from './ky.png'
+import { Brand } from '../constants'
 
 interface BrandLogoProps {
   brand: Brand
@@ -10,8 +10,8 @@ interface BrandLogoProps {
 }
 
 const BrandImageMap = {
-  [Brand.TJ]: TJ,
-  [Brand.KY]: KY,
+  [Brand.TJ]: TJImage,
+  [Brand.KY]: KYImage,
 }
 
 function BrandLogo({

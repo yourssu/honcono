@@ -7,9 +7,9 @@ import { Text, Typography } from '@yourssu/design-system'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import { SegmentedControl } from '../../elements/SegmentedControl'
-import { SearchSegment, SearchSegmentMap } from '../../types'
 import SongList from '../../components/SongList'
 import * as Styled from './Search.styled'
+import { SearchSegment, SearchSegmentMap } from '../../constants'
 
 function Search({ location }: RouteComponentProps) {
   const dispatch = useDispatch()

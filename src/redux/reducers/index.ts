@@ -1,6 +1,7 @@
 import * as AT from '../actions/ActionTypes';
 
-import { Action, Brand, RootState, SearchSegment } from '../../types'
+import { Action, RootState } from '../../types'
+import { Brand, SearchSegment } from '../../constants';
 
 const initialState: RootState = {
   initialized: false,

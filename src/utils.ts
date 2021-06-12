@@ -1,4 +1,4 @@
-import { Brand, SearchSegment } from "./types";
+import { Brand, SearchSegment } from './constants'
 
 export function parseBrand(brand: Brand): 'TJ' | 'KY' {
   switch(brand) {

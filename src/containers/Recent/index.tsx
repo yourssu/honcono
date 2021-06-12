@@ -14,7 +14,7 @@ import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import * as Styled from './Recent.styled'
 import { parseBrand, toggleBrand } from '../../utils'
-import { BrandNameMap } from '../../types'
+import { Brand, BrandNameMap } from '../../constants'
 
 function Recent() {
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ function Recent() {
     recentReducer.songs,
   ])
 
-  const otherBrand = useMemo(() => toggleBrand(brand), [brand])
+  const otherBrand = useMemo<Brand>(() => toggleBrand(brand), [brand])
 
   const handleClickToggleBrand = useCallback(() => {
     dispatch(actions.changeBrand({ brand: otherBrand }))

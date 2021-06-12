@@ -1,7 +1,8 @@
 import * as AT from './ActionTypes';
 
 //import { createAction } from '@reduxjs/toolkit';
-import { Brand, RootState, SearchSegment, SongType } from '../../types';
+import { RootState, SongType } from '../../types';
+import { Brand, SearchSegment } from '../../constants';
 
 interface initStatePayload {
   state: RootState

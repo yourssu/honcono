@@ -1,5 +1,6 @@
 import { put, all, call, takeLatest, select } from 'redux-saga/effects'
-import { Action, SearchSegment } from '../types'
+import { SearchSegment } from '../constants'
+import { Action } from '../types'
 import { getIntelligentSegment } from '../utils'
 import { actions, requestGetSearchSongsPayload } from './actions'
 
