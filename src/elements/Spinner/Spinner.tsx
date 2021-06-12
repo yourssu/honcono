@@ -5,7 +5,9 @@ import * as Styled from './Spinner.styled'
 
 function Spinner({ size }: SpinnerProps) {
   return (
-    <Styled.Spinner>Loading...</Styled.Spinner>
+    <Styled.Wrapper>
+      <Styled.Spinner>Loading...</Styled.Spinner>
+    </Styled.Wrapper>
   )
 }
 

@@ -1,5 +1,12 @@
 import { styled } from '@yourssu/design-system'
 
+export const Wrapper = styled.div`
+  width: 52px;
+  height: 52px;
+  margin: 8px auto;
+  overflow: hidden;
+`
+
 export const Spinner = styled.div`
   @-webkit-keyframes load3 {
     0% {

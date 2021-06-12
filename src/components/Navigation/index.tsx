@@ -64,6 +64,7 @@ function Navigation({ location }: RouteComponentProps) {
     if (event.key === 'Enter') {
       if (timer.current) {
         clearTimeout(timer.current)
+        searchFieldRef.current?.blur()
       }
       dispatchSearch(keyword)
     }
@@ -76,6 +77,7 @@ function Navigation({ location }: RouteComponentProps) {
     history.push('/')
     searchFieldRef.current?.blur()
   }, [history])
+
   const handleClickRecent = useCallback(() => {
     history.push('/recent')
   }, [history])
@@ -102,6 +104,8 @@ function Navigation({ location }: RouteComponentProps) {
     return (
       <Styled.SearchWrapper>
         <Styled.SearchField
+          type="search"
+          inputMode="search"
           ref={searchFieldRef}
           value={keyword}
           allowClear
