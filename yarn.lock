@@ -2332,10 +2332,10 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"@yourssu/design-system@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@yourssu/design-system/-/design-system-0.0.5.tgz#bf79237539a667a650d074528023cf6b5dbd25a9"
-  integrity sha512-E6kRuY7r9JybHI8C6w8cagLmYsP1RoC/jpo0A/3pm7Ctl3Kv0/vu7BkQS7aDUmgWvNoese8pqbmyKcwFsQ2JUA==
+"@yourssu/design-system@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@yourssu/design-system/-/design-system-0.0.6.tgz#158c53489b47cad45378264d8dede1fd3d9b7c67"
+  integrity sha512-FaDOINiuVlMgjvjB3qDIjuKBbhlJZQ8cBNFNLl7modh+JfF6mckhenoI6a5S2BjSWsvG71a15UHMBNAvwFmqHA==
   dependencies:
     "@babel/runtime" "^7.14.0"
     core-decorators "^0.20.0"

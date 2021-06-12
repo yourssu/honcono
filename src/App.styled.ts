@@ -6,6 +6,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
+  max-width: 500px;
   height: 100%;
+  margin: 0 auto;
   background-color: ${({ foundation }) => foundation?.theme.bgNormal};
 `

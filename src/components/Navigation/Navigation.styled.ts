@@ -28,7 +28,7 @@ export const Brand = styled.div`
   margin-left: auto;
   cursor: pointer;
 
-  &:hover {
+  &:active {
     ${pressedStyle}
   }
 `

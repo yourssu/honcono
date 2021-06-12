@@ -34,7 +34,7 @@ export const ControlItem = styled.div<ControlItemProps>`
   )};
 
 
-  &:hover {
+  &:active {
     ${({ selected }) => !selected && pressedStyle}
   }
 `

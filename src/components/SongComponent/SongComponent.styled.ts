@@ -13,7 +13,7 @@ export const Wrapper = styled.div<InboxFocusProps>`
 
   cursor: pointer;
 
-  &:hover {
+  &:active {
     background-color: ${({ foundation, focusOnInbox }) => (
       focusOnInbox
         ? foundation?.theme.bgNormal
