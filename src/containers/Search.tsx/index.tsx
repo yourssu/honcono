@@ -65,7 +65,7 @@ function Search({ location }: RouteComponentProps) {
       <>
         <Styled.Title>
           <Text typo={Typography.Title1}>
-            검색 결과
+            { `'${keyword}' 검색 결과` }
           </Text>
         </Styled.Title>
 
@@ -77,6 +77,7 @@ function Search({ location }: RouteComponentProps) {
       </>
     )
   }, [
+    keyword,
     isFetching,
     scrollTriggerRef,
     searchedSongList,
@@ -84,7 +85,6 @@ function Search({ location }: RouteComponentProps) {
 
   return (
     <Styled.Wrapper>
-
       { ResultComponent }
     </Styled.Wrapper>
   )
