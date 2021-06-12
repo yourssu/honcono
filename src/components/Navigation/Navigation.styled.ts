@@ -1,4 +1,4 @@
-import { pressedStyle, styled } from "@yourssu/design-system";
+import { pressedStyle, styled, TextField } from "@yourssu/design-system";
 
 export const Wrapper = styled.div`
   position: -webkit-sticky;
@@ -71,4 +71,8 @@ export const BackButton = styled.div<BackButtonProps>`
 
 export const SegmentedControlWrapper = styled.div`
   padding: 16px 20px 0 16px;
+`
+
+export const SearchField = styled(TextField)`
+	user-select: auto;
 `

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter, useHistory, RouteComponentProps } from 'react-router-dom'
-import { Text, TextField, TextFieldRef, Typography } from '@yourssu/design-system'
+import { Text, TextFieldRef, Typography } from '@yourssu/design-system'
 
 import { DEBOUNCE_DELAY, SearchSegment, SearchSegmentMap } from '../../constants'
 import { actions } from '../../redux/actions'
@@ -101,7 +101,7 @@ function Navigation({ location }: RouteComponentProps) {
   const SearchComponent = useMemo(() => {
     return (
       <Styled.SearchWrapper>
-        <TextField
+        <Styled.SearchField
           ref={searchFieldRef}
           value={keyword}
           allowClear
