@@ -13,6 +13,8 @@ export const Wrapper = styled.div<InboxFocusProps>`
 
   cursor: pointer;
 
+  ${({ foundation }) => foundation?.transition.getTransitionsCSS('background-color')}
+
   &:active {
     background-color: ${({ foundation, focusOnInbox }) => (
       focusOnInbox
