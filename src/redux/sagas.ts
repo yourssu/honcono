@@ -92,9 +92,11 @@ function* toggleInboxSongSaga({ payload }: Action<toggleInobxSongPayload>) {
   // @ts-ignore
   const isInboxSong = payload.isInboxSong
   if (isInboxSong) {
-    yield put(
-      actions.deleteInboxSong({ no: song.no! })
-    )
+    if (window.confirm(`${song.title && `'${song.title}'을(를) `}보관함에서 지울까요?`)) {
+      yield put(
+        actions.deleteInboxSong({ no: song.no! })
+      )
+    }
   } else {
     yield put(
       actions.addInboxSong({ song })

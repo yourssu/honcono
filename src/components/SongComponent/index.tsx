@@ -58,14 +58,14 @@ function SongComponent(
             name="ic_star_filled"
             color="buttonPoint"
             size={IconSize.M}
-            marginRight={16}
+            marginRight={8}
           />
         ) : (
           <Icon
             name="ic_star_line"
             color="buttonPoint"
             size={IconSize.M}
-            marginRight={16}
+            marginRight={8}
           />
       ) }
     </Styled.InboxWrapper>
