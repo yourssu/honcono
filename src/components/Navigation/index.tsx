@@ -152,6 +152,7 @@ function Navigation({ location }: RouteComponentProps) {
 
   const handleChangeSearchSegment = useCallback((index) => {
     dispatch(actions.changeSearchSegment({segment: controlItems[index]}))
+    searchFieldRef.current?.focus()
   }, [
     controlItems,
     dispatch,
