@@ -1,14 +1,12 @@
 import { styled } from '@yourssu/design-system'
 
 export const Wrapper = styled.div`
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 16px 0;
 `
 
-export const SpinnerWarpper = styled.div`
-  display: flex;
-  align-items: center;
-  height: 40%;
+export const Title = styled.div`
+  padding: 24px 0 16px 20px;
 `

@@ -8,6 +8,7 @@ import SongComponent from '../SongComponent'
 import * as Styled from './SongList.styled'
 import { actions } from '../../redux/actions'
 import { Spinner } from '../../elements/Spinner'
+import { Divider } from '@yourssu/design-system'
 
 interface SongListProps {
   songs?: SongType[]
@@ -44,7 +45,10 @@ function SongList({
 
           return (
           <Fragment key={song.no}>
-            <Styled.Divider/>
+            <Divider
+              marginLeft={20}
+              marginRight={20}
+            />
             { isLastTriggerIndex
               ? <SongComponent
                   song={song}

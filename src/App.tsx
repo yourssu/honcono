@@ -12,8 +12,9 @@ import Recent from './containers/Recent'
 import Navigation from './components/Navigation'
 import Initializer from './containers/Initializer'
 import Footer from './components/Footer'
+import Credit from './containers/Credit'
 
-const { Provider } = DetailContext
+const { Provider: Detailprovider } = DetailContext
 
 function App() {
   const [detail, setDetail] = useState<SongType | undefined>(undefined)
@@ -43,7 +44,7 @@ function App() {
   ])
 
   return (
-    <Provider value={{
+    <Detailprovider value={{
       detail,
       showDetail,
       hideDetail,
@@ -55,13 +56,14 @@ function App() {
           <Route path="/recent" exact={true} component={Recent} />
           <Route path="/search/:keyword" component={Search} />
           <Route path="/search" exact component={Search} />
+          <Route path="/credit" exact component={Credit} />
           <Footer />
         </Router>
       </Styled.Wrapper>
 
       { BottomSheetComponent }
       <Initializer />
-    </Provider>
+    </Detailprovider>
   );
 }
 

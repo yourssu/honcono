@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
-  margin-top: 32px;
+  margin-top: 24px;
 `
 
 export const Header = styled.div`
