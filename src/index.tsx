@@ -15,6 +15,10 @@ import reportWebVitals from './reportWebVitals'
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import rootSaga from './redux/sagas'
 
+import { config } from 'dotenv'
+
+config()
+
 const sagaMiddleware = createSagaMiddleware()
 
 const store = configureStore({
