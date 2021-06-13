@@ -1,11 +1,8 @@
-import React, { useCallback, useMemo, useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import DetailContext from './contexts/DetailContext'
 import * as Styled from './App.styled'
-import { SongType } from './types'
-import { BottomSheet } from '@yourssu/design-system'
-import Detail from './components/Detail'
+import { BottomSheetProvider } from '@yourssu/design-system'
 import Inbox from './containers/Inbox'
 import Search from './containers/Search.tsx'
 import Recent from './containers/Recent'
@@ -14,41 +11,9 @@ import Initializer from './containers/Initializer'
 import Footer from './components/Footer'
 import Credit from './containers/Credit'
 
-const { Provider: Detailprovider } = DetailContext
-
 function App() {
-  const [detail, setDetail] = useState<SongType | undefined>(undefined)
-  const [show, setShow] = useState(false)
-
-  const showDetail = useCallback((song: SongType) => {
-    setDetail(song)
-    setShow(true)
-  }, [])
-
-  const hideDetail = useCallback(() => {
-    setShow(false)
-  }, [])
-
-  const BottomSheetComponent = useMemo(() => (
-    <BottomSheet
-      show={show}
-      onHide={hideDetail}
-      desktopWidth={500}
-    >
-      <Detail song={detail && detail}/>
-    </BottomSheet>
-  ), [
-    detail,
-    hideDetail,
-    show,
-  ])
-
   return (
-    <Detailprovider value={{
-      detail,
-      showDetail,
-      hideDetail,
-    }}>
+    <BottomSheetProvider>
       <Styled.Wrapper>
         <Router>
           <Navigation />
@@ -61,9 +26,8 @@ function App() {
         </Router>
       </Styled.Wrapper>
 
-      { BottomSheetComponent }
       <Initializer />
-    </Detailprovider>
+    </BottomSheetProvider>
   );
 }
 
