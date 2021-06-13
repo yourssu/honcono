@@ -23,10 +23,11 @@ function App() {
           <Route path="/search" exact component={Search} />
           <Route path="/credit" exact component={Credit} />
           <Footer />
+          
+          <Initializer />
         </Router>
       </Styled.Wrapper>
 
-      <Initializer />
     </BottomSheetProvider>
   );
 }

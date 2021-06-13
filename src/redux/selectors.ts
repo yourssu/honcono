@@ -7,6 +7,8 @@ const getRootState = (state: RootState) => state
 
 const getIsIntialized = (state: RootState) => state.initialized
 
+const getPreviousLocation = (state: RootState) => state.previousLocation
+
 const getBrand = (state: RootState) => state.brand
 
 const getRecentReducer = (state: RootState) => state.recentReducer
@@ -39,6 +41,7 @@ const getIsInboxSong = (song: SongType) => (state: RootState) => (
 
 const Selector = {
   getRootState,
+  getPreviousLocation,
   getIsIntialized,
 
   getBrand,

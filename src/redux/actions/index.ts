@@ -12,6 +12,14 @@ const initState = (payload: initStatePayload) => ({
   payload,
 })
 
+interface updateLocationPayload {
+  location: string
+}
+const updateLocation = (payload: updateLocationPayload) => ({
+  type: AT.UPDATE_LOCATION,
+  payload,
+})
+
 interface changeBrandPayload {
   brand: Brand
 }
@@ -92,6 +100,7 @@ const toggleInboxSong = (payload: toggleInobxSongPayload) => ({
 
 export const actions = {
   initState,
+  updateLocation,
   changeBrand,
 
   requestGetRecentSongs,

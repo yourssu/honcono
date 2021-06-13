@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { RouteComponentProps } from 'react-router'
+import { withRouter } from 'react-router-dom'
 
 import { actions } from '../redux/actions'
 import Selector from '../redux/selectors'
 
-function Initializer() {
+function Initializer({ location }: RouteComponentProps) {
   const dispatch = useDispatch()
   const rootState = useSelector(Selector.getRootState)
   const initialized = useSelector(Selector.getIsIntialized)
@@ -26,7 +28,16 @@ function Initializer() {
     window.localStorage.setItem('yourssu_honcono', JSON.stringify(rootState))
   }, [rootState])
 
+  useEffect(function controlPreviousLocation() {
+    if (!location.pathname.startsWith('/search')) {
+      dispatch(actions.updateLocation({ location: location.pathname }))
+    }
+  }, [
+    dispatch,
+    location.pathname,
+  ])
+
   return (<></>)
 }
 
-export default Initializer
+export default withRouter(Initializer)

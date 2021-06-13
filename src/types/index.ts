@@ -37,6 +37,7 @@ export interface RecentReducer {
 
 export interface RootState {
   initialized: boolean
+  previousLocation: string
   brand: Brand
   searchReducer: SearchReducer
   recentReducer: RecentReducer

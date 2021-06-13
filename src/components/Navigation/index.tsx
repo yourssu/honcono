@@ -14,6 +14,7 @@ function Navigation({ location }: RouteComponentProps) {
   const dispatch = useDispatch()
   const history = useHistory()
 
+  const previousLocation = useSelector(Selector.getPreviousLocation)
   const brand = useSelector(Selector.getBrand)
   const searchKeyword = useSelector(Selector.getSearchKeyword)
   const searchSegment = useSelector(Selector.getSearchSegment)
@@ -75,8 +76,17 @@ function Navigation({ location }: RouteComponentProps) {
 
   const handleClickHome = useCallback(() => {
     history.push('/')
+  }, [
+    history,
+  ])
+
+  const handleClickCancle = useCallback(() => {
+    history.push(previousLocation)
     searchFieldRef.current?.blur()
-  }, [history])
+  }, [
+    history,
+    previousLocation,
+  ])
 
   const handleClickRecent = useCallback(() => {
     history.push('/recent')
@@ -120,7 +130,7 @@ function Navigation({ location }: RouteComponentProps) {
         />
 
         <Styled.BackButton
-          onClick={handleClickHome}
+          onClick={handleClickCancle}
           show={isSearchPage}
         >
           <Text
@@ -133,7 +143,7 @@ function Navigation({ location }: RouteComponentProps) {
       </Styled.SearchWrapper>
     )
   }, [
-    handleClickHome,
+    handleClickCancle,
     handleFocus,
     handleKeyDown,
     handleKeywordChange,

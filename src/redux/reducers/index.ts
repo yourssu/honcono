@@ -5,6 +5,7 @@ import { Brand, SearchSegment } from '../../constants';
 
 const initialState: RootState = {
   initialized: false,
+  previousLocation: '/',
   brand: Brand.TJ,
   inbox: {
     [Brand.TJ]: [],
@@ -32,6 +33,12 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
       return {
         ...action.payload.state,
         initialized: true,
+      }
+
+    case AT.UPDATE_LOCATION:
+      return {
+        ...state,
+        previousLocation: action.payload.location,
       }
 
     case AT.CHANGE_BRAND:
