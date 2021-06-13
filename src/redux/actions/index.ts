@@ -65,6 +65,25 @@ const requestGetSearchSongsError = () => ({
   type: AT.REQUEST_GET_SEARCH_SONGS_ERROR,
 })
 
+export interface requestGetYoutubeIDPayload extends Required<Pick<SongType, 'title' | 'singer'>> {}
+
+const requestGetYoutubeID = (payload: requestGetYoutubeIDPayload) => ({
+  type: AT.REQUEST_GET_YOUTUBE_ID,
+  payload
+})
+
+export interface requestGetYoutubeIDSuccessPayload {
+  youtubeID: string
+}
+const requestGetYoutubeIDSuccess = (payload: requestGetYoutubeIDSuccessPayload) => ({
+  type: AT.REQUEST_GET_YOUTUBE_ID_SUCCESS,
+  payload,
+})
+
+const requestGetYoutubeIDError = () => ({
+  type: AT.REQUEST_GET_YOUTUBE_ID_ERROR,
+})
+
 export interface changeSearchSegmentPayload {
   segment: SearchSegment
 }
@@ -111,6 +130,10 @@ export const actions = {
   requestGetSearchSongsSuccess,
   requestGetSearchSongsError,
   changeSearchSegment,
+
+  requestGetYoutubeID,
+  requestGetYoutubeIDSuccess,
+  requestGetYoutubeIDError,
 
   addInboxSong,
   deleteInboxSong,

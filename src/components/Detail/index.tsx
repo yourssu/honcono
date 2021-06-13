@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react'
+import React, { useCallback, useEffect, useMemo } from 'react'
 import {
   Icon,
   IconSize,
@@ -21,6 +21,17 @@ function Detail({
 }: DetailProps) {
   const dispatch = useDispatch()
   const isInboxSong = useSelector(Selector.getIsInboxSong(song))
+
+  useEffect(function requestYoutubeID() {
+    dispatch(actions.requestGetYoutubeID({
+      title: song.title ?? '',
+      singer: song.singer ?? '',
+    }))
+  }, [
+    dispatch,
+    song.singer,
+    song.title,
+  ])
 
   const handleClickInbox = useCallback(() => {
     dispatch(actions.toggleInboxSong({ song, isInboxSong }))

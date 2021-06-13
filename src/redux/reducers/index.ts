@@ -11,6 +11,10 @@ const initialState: RootState = {
     [Brand.TJ]: [],
     [Brand.KY]: [],
   },
+  youtubeReducer: {
+    youtubeID: '',
+    isFetching: false,
+  },
   searchReducer: {
     keyword: '',
     segment: SearchSegment.Title,
@@ -102,6 +106,33 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         ...state,
         searchReducer: {
           ...state.searchReducer,
+          isFetching: false,
+        }
+      }
+    
+    case AT.REQUEST_GET_YOUTUBE_ID:
+      return {
+        ...state,
+        youtubeReducer: {
+          ...state.youtubeReducer,
+          isFetching: true,
+        }
+      }
+
+    case AT.REQUEST_GET_YOUTUBE_ID_SUCCESS:
+      return {
+        ...state,
+        youtubeReducer: {
+          youtubeID: action.payload.youtubeID,
+          isFetching: false,
+        }
+      }
+
+    case AT.REQUEST_GET_YOUTUBE_ID_ERROR:
+      return {
+        ...state,
+        youtubeReducer: {
+          ...state.youtubeReducer,
           isFetching: false,
         }
       }

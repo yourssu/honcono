@@ -31,6 +31,8 @@ const getSearchKeyword = (state: RootState) => state.searchReducer.keyword
 
 const getSearchSegment = (state: RootState) => state.searchReducer.segment
 
+const getYoutubeReducer = (state: RootState) => state.youtubeReducer
+
 const getInboxSongs = (state: RootState) => state.inbox[state.brand]
 
 const getIsInboxSong = (song: SongType) => (state: RootState) => (
@@ -54,6 +56,8 @@ const Selector = {
   isFetchingSearchSongs,
   getSearchKeyword,
   getSearchSegment,
+
+  getYoutubeReducer,
 
   getInboxSongs,
   getIsInboxSong,

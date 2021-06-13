@@ -2,10 +2,10 @@ import { put, all, call, takeLatest, select } from 'redux-saga/effects'
 import { SearchSegment } from '../constants'
 import { Action } from '../types'
 import { getIntelligentSegment } from '../utils'
-import { actions, requestGetSearchSongsPayload, toggleInobxSongPayload } from './actions'
+import { actions, requestGetSearchSongsPayload, requestGetYoutubeIDPayload, toggleInobxSongPayload } from './actions'
 
 import * as AT from './actions/ActionTypes'
-import { getRecentSongs, getSearchSongs } from './apis'
+import { getRecentSongs, getSearchSongs, getYoutubeID } from './apis'
 import Selector from './selectors'
 
 function* getRecentSongsSaga() {
@@ -29,13 +29,6 @@ function* getRecentSongsSaga() {
 // @ts-ignore
 function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) {
   try {
-    // @ts-ignore
-    // const prevKeyword = yield select(Selector.getSearchKeyword)
-    // if (payload.keyword === prevKeyword) {
-    //   yield put(
-    //     actions.requestGetSearchSongsError()
-    //   )
-    // }
     // @ts-ignore
     const brand = yield select(Selector.getBrand)
 
@@ -87,6 +80,18 @@ function* getSearchSongsSaga({ payload }: Action<requestGetSearchSongsPayload>) 
   }
 }
 
+function* getYoutubeIDSaga({ payload }: Action<requestGetYoutubeIDPayload>) {
+  try {
+    // @ts-ignore
+    const data = yield call(getYoutubeID, payload)
+    const youtubeID = data.items[0].id.videoId
+
+    yield put(actions.requestGetYoutubeIDSuccess({ youtubeID }))
+  } catch (error) {
+    yield put(actions.requestGetYoutubeIDError())
+  }
+}
+
 function* toggleInboxSongSaga({ payload }: Action<toggleInobxSongPayload>) {
   const song = payload.song
   // @ts-ignore
@@ -108,6 +113,7 @@ export default function* rootSaga() {
   yield all([
     takeLatest(AT.REQUEST_GET_RECENT_SONGS, getRecentSongsSaga),
     takeLatest(AT.REQUEST_GET_SEARCH_SONGS, getSearchSongsSaga),
+    takeLatest(AT.REQUEST_GET_YOUTUBE_ID, getYoutubeIDSaga),
     takeLatest(AT.TOGGLE_INBOX_SONG, toggleInboxSongSaga),
   ])
 }

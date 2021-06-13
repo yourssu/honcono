@@ -35,10 +35,16 @@ export interface RecentReducer {
   isFetching: boolean
 }
 
+export interface YoutubeReducer {
+  youtubeID: string
+  isFetching: boolean
+}
+
 export interface RootState {
   initialized: boolean
   previousLocation: string
   brand: Brand
+  youtubeReducer: YoutubeReducer
   searchReducer: SearchReducer
   recentReducer: RecentReducer
   inbox: Inbox

@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Brand, SearchSegment } from '../constants'
 import { SongType } from '../types'
 import { config } from 'dotenv'
+import { requestGetYoutubeIDPayload } from './actions'
 
 config()
 
@@ -23,9 +24,7 @@ export async function getSearchSongs({keyword, type, brand}: getSearchSongsProps
   return data
 }
 
-export interface getYoutubeIDProps extends Required<Pick<SongType, 'title' | 'singer'>> {}
-
-export async function getYoutubeID({title, singer}: getYoutubeIDProps) {
+export async function getYoutubeID({title, singer}: requestGetYoutubeIDPayload) {
   const youtubeKeyword = `${title}%20${singer}`;
   const link = `https://www.googleapis.com/youtube/v3/search?part=id&regionCode=KR&q=${youtubeKeyword}&key=${process.env.REACT_APP_API_KEY}`
   const { data } = await axios.get(link)
