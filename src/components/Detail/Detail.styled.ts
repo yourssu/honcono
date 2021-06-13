@@ -5,7 +5,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   padding: 0 20px 0 20px;
   user-select: auto;
-  border: 1px solid red;
 `
 
 export const Header = styled.div`

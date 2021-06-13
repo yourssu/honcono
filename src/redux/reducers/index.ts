@@ -6,7 +6,6 @@ import { Brand, SearchSegment } from '../../constants';
 const initialState: RootState = {
   initialized: false,
   brand: Brand.TJ,
-  detailSong: {},
   inbox: {
     [Brand.TJ]: [],
     [Brand.KY]: [],

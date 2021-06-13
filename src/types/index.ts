@@ -41,5 +41,4 @@ export interface RootState {
   searchReducer: SearchReducer
   recentReducer: RecentReducer
   inbox: Inbox
-  detailSong: SongType
 }
