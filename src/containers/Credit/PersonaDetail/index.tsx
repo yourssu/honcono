@@ -29,7 +29,7 @@ function PersonaDetail({
       {
         !_.isEmpty(profile?.urls) && (
           profile?.urls?.map(({name, url}) => name && url && (
-            <Styled.Link href={url} target='_blank'>
+            <Styled.Link key={name} href={url} target='_blank'>
               <Text typo={Typography.Body1} color="textPointed">
                 {name}
               </Text>
