@@ -5,9 +5,9 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 8px 20px;
+  padding: 16px 20px;
   cursor: pointer;
-  
+
   &:active {
     background-color: ${({ foundation }) => foundation?.theme.bgPressed};
   }

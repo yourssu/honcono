@@ -13,7 +13,7 @@ import Credit from './containers/Credit'
 
 function App() {
   return (
-    <BottomSheetProvider>
+    <BottomSheetProvider desktopWidth={500}>
       <Styled.Wrapper>
         <Router>
           <Navigation />

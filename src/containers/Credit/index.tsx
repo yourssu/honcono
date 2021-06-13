@@ -19,15 +19,15 @@ function Credit() {
           만든 사람들
         </Text>
       </Styled.Title>
+      <Divider
+        marginLeft={20}
+        marginRight={20}
+      />
       {
         CreditList.map((credit) => (
           <Fragment
             key={credit.name}
           >
-            <Divider
-              marginLeft={20}
-              marginRight={20}
-            />
             <Persona
               profile={credit}
               onClick={() => handleClickPersona(credit)}

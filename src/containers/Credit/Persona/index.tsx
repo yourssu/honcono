@@ -1,6 +1,7 @@
 import React, { forwardRef, ReactElement } from 'react'
 import { ProfileImage, ProfileImageSize, Text, Typography, UIComponentProps } from '@yourssu/design-system'
 
+import Yourssu from '../../../assets/Yourssu.png'
 import * as Styled from './Persona.styled'
 
 interface URL {
@@ -22,7 +23,7 @@ interface PersonaProps extends UIComponentProps {
 function Persona(
   {
     profile = {
-      imgSrc: 'https://dinohan.com/images/smile.png',
+      imgSrc: Yourssu,
       name: '한도협',
       role: '개발자',
     },
