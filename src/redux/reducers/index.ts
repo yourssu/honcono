@@ -135,6 +135,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         ...state,
         youtubeReducer: {
           ...state.youtubeReducer,
+          youtubeID: '',
           isFetching: false,
         }
       }

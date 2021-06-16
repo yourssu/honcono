@@ -74,6 +74,35 @@ function Detail({
     song.no,
   ])
 
+  const YoutubeComponent = useMemo(() => {
+    if (isFetching) {
+      return (
+        <Styled.YoutubeWrapper>
+          <Spinner />
+        </Styled.YoutubeWrapper>
+      )
+    }
+
+    if (youtubeID) {
+      return (
+        <Styled.YoutubeWrapper>
+          <YouTube
+            videoId={youtubeID}
+            opts={{
+              width: '100%',
+              height: '100%'
+            }}
+          />
+        </Styled.YoutubeWrapper>
+      )
+    }
+
+    return null
+  }, [
+    isFetching,
+    youtubeID,
+  ])
+
   return (
     <Styled.Wrapper>
       { HeaderComponent }
@@ -84,20 +113,8 @@ function Detail({
       <Text typo={Typography.Body1}>
         { song.singer }
       </Text>
-      <Styled.YoutubeWrapper>
-        { isFetching ? (
-          <Spinner />
-        ) : (
-          <YouTube
-            videoId={youtubeID}
-            opts={{
-              width: '100%',
-              height: '100%'
-            }}
-          />
-        )}
-        
-      </Styled.YoutubeWrapper>
+
+      { YoutubeComponent }
     </Styled.Wrapper>
   )
 }
