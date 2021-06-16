@@ -3,7 +3,7 @@ import * as AT from '../actions/ActionTypes';
 import { Action, RootState } from '../../types'
 import { Brand, SearchSegment } from '../../constants';
 
-const initialState: RootState = {
+export const initialState: RootState = {
   initialized: false,
   previousLocation: '/',
   brand: Brand.TJ,
@@ -14,6 +14,7 @@ const initialState: RootState = {
   youtubeReducer: {
     youtubeID: '',
     isFetching: false,
+    cache: new Map()
   },
   searchReducer: {
     keyword: '',
@@ -123,6 +124,7 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
       return {
         ...state,
         youtubeReducer: {
+          ...state.youtubeReducer,
           youtubeID: action.payload.youtubeID,
           isFetching: false,
         }

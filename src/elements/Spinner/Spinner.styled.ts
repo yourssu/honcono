@@ -3,7 +3,7 @@ import { styled } from '@yourssu/design-system'
 export const Wrapper = styled.div`
   width: 52px;
   height: 52px;
-  margin: 8px auto;
+  margin: auto;
   overflow: hidden;
 `
 

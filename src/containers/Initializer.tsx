@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RouteComponentProps } from 'react-router'
 import { withRouter } from 'react-router-dom'
 
+import { LOCAL_STORAGE } from '../constants'
 import { actions } from '../redux/actions'
 import Selector from '../redux/selectors'
 
@@ -13,7 +14,7 @@ function Initializer({ location }: RouteComponentProps) {
 
   useEffect(function initialize() {
     if (!initialized) {
-      const localState = window.localStorage.getItem('yourssu_honcono')
+      const localState = window.localStorage.getItem(LOCAL_STORAGE)
 
       if (localState) {
         dispatch(actions.initState({ state: JSON.parse(localState) }))
@@ -25,7 +26,7 @@ function Initializer({ location }: RouteComponentProps) {
   ])
 
   useEffect(function saveLocalStorage() {
-    window.localStorage.setItem('yourssu_honcono', JSON.stringify(rootState))
+    window.localStorage.setItem(LOCAL_STORAGE, JSON.stringify(rootState))
   }, [rootState])
 
   useEffect(function controlPreviousLocation() {

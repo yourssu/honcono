@@ -26,7 +26,7 @@ export async function getSearchSongs({keyword, type, brand}: getSearchSongsProps
 
 export async function getYoutubeID({title, singer}: requestGetYoutubeIDPayload) {
   const youtubeKeyword = `${title}%20${singer}`;
-  const link = `https://www.googleapis.com/youtube/v3/search?part=id&regionCode=KR&q=${youtubeKeyword}&key=${process.env.REACT_APP_API_KEY}`
+  const link = `https://www.googleapis.com/youtube/v3/search?part=id&regionCode=KR&q=${youtubeKeyword}&key=${process.env.REACT_APP_API_KEY}&maxResults=1`
   const { data } = await axios.get(link)
   return data
 }

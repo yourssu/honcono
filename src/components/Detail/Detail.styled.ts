@@ -27,3 +27,28 @@ export const InboxWrapper = styled.div`
     opacity: 0.7;
   }
 `
+
+export const YoutubeWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  max-height: 500px;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%;
+  }
+
+  & * {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+`

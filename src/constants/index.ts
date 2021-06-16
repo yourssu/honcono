@@ -3,6 +3,8 @@ export const SCROLL_TRIGGER_INDEX = 10
 
 export const DEBOUNCE_DELAY = 400
 
+export const LOCAL_STORAGE = 'yourssu_honcono'
+
 export enum Brand {
   TJ = 'tj',
   KY = 'kumyoung',

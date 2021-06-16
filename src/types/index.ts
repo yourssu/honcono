@@ -35,9 +35,15 @@ export interface RecentReducer {
   isFetching: boolean
 }
 
+interface Cache {
+  expiredAt: Date,
+  youtubeID: string,
+}
+
 export interface YoutubeReducer {
   youtubeID: string
   isFetching: boolean
+  cache: Map<string, Cache>
 }
 
 export interface RootState {

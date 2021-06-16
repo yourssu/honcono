@@ -11,6 +11,8 @@ import * as Styled from './Detail.styled'
 import { useDispatch, useSelector } from 'react-redux'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
+import YouTube from 'react-youtube'
+import { Spinner } from '../../elements/Spinner'
 
 interface DetailProps {
   song?: SongType,
@@ -20,6 +22,8 @@ function Detail({
   song = {},
 }: DetailProps) {
   const dispatch = useDispatch()
+
+  const { youtubeID, isFetching } = useSelector(Selector.getYoutubeReducer)
   const isInboxSong = useSelector(Selector.getIsInboxSong(song))
 
   useEffect(function requestYoutubeID() {
@@ -80,6 +84,20 @@ function Detail({
       <Text typo={Typography.Body1}>
         { song.singer }
       </Text>
+      <Styled.YoutubeWrapper>
+        { isFetching ? (
+          <Spinner />
+        ) : (
+          <YouTube
+            videoId={youtubeID}
+            opts={{
+              width: '100%',
+              height: '100%'
+            }}
+          />
+        )}
+        
+      </Styled.YoutubeWrapper>
     </Styled.Wrapper>
   )
 }

@@ -117,6 +117,22 @@ const toggleInboxSong = (payload: toggleInobxSongPayload) => ({
   payload,
 })
 
+export interface addCachePayload {
+  
+}
+const addCache = (payload: addCachePayload) => ({
+  type: AT.ADD_CACHE,
+  payload,
+})
+
+export interface deleteCachePayload {
+  key: string
+}
+const deleteCache = (payload: deleteCachePayload) => ({
+  type: AT.DELETE_CACHE,
+  payload,
+})
+
 export const actions = {
   initState,
   updateLocation,
@@ -138,4 +154,7 @@ export const actions = {
   addInboxSong,
   deleteInboxSong,
   toggleInboxSong,
+
+  addCache,
+  deleteCache,
 }

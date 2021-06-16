@@ -31,7 +31,7 @@ function SongComponent(
   const [focusOnInbox, setFocusOnInbox] = useState(false)
 
   const handleClickWrapper = useCallback(() => {
-    show(<Detail song={song}/>)
+    show(<Detail song={song}/>, { forceUnmount: true })
   }, [
     show,
     song,
