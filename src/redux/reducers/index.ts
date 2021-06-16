@@ -1,7 +1,8 @@
-import * as AT from '../actions/ActionTypes';
+import Immutable from 'immutable'
 
+import * as AT from '../actions/ActionTypes'
 import { Action, RootState } from '../../types'
-import { Brand, SearchSegment } from '../../constants';
+import { Brand, SearchSegment } from '../../constants'
 
 export const initialState: RootState = {
   initialized: false,
@@ -14,7 +15,7 @@ export const initialState: RootState = {
   youtubeReducer: {
     youtubeID: '',
     isFetching: false,
-    cache: new Map()
+    cache: Immutable.Map()
   },
   searchReducer: {
     keyword: '',
@@ -30,7 +31,7 @@ export const initialState: RootState = {
     songs: [],
     isFetching: false,
   },
-};
+}
 
 const reducer = (state: RootState = initialState, action: Action<any>): RootState => {
   switch (action.type) {

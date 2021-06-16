@@ -1,3 +1,5 @@
+import Immutable from 'immutable'
+
 import { Brand, SearchSegment } from '../constants'
 
 export interface Action<P = undefined> {
@@ -36,14 +38,30 @@ export interface RecentReducer {
 }
 
 interface Cache {
-  expiredAt: Date,
+  expiredIn: Date,
   youtubeID: string,
+}
+
+export interface YoutubeReducerPOJO {
+  youtubeID: string
+  isFetching: boolean
+  cache: {[key: string]: Cache}
 }
 
 export interface YoutubeReducer {
   youtubeID: string
   isFetching: boolean
-  cache: Map<string, Cache>
+  cache: Immutable.Map<string, Cache>
+}
+
+export interface RootStatePOJO {
+  initialized: boolean
+  previousLocation: string
+  brand: Brand
+  youtubeReducer: YoutubeReducerPOJO
+  searchReducer: SearchReducer
+  recentReducer: RecentReducer
+  inbox: Inbox
 }
 
 export interface RootState {
