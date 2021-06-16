@@ -41,6 +41,8 @@ const getIsInboxSong = (song: SongType) => (state: RootState) => (
   ))
 )
 
+const getCacheMap = (state: RootState) => state.youtubeReducer.cache
+
 const Selector = {
   getRootState,
   getPreviousLocation,
@@ -61,6 +63,8 @@ const Selector = {
 
   getInboxSongs,
   getIsInboxSong,
+
+  getCacheMap,
 }
 
 export default Selector

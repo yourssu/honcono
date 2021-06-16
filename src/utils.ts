@@ -34,3 +34,11 @@ export function toggleBrand(brand: Brand): Brand {
       return Brand.TJ
   }
 }
+
+export function isExpired(date: number) {
+  const now = Date.now()
+
+  if (now >= date) { return true }
+
+  return false
+}

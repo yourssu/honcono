@@ -1,7 +1,7 @@
 import * as AT from './ActionTypes';
 
 //import { createAction } from '@reduxjs/toolkit';
-import { RootState, SongType } from '../../types';
+import { Cache, RootState, SongType } from '../../types';
 import { Brand, SearchSegment } from '../../constants';
 
 interface initStatePayload {
@@ -118,7 +118,8 @@ const toggleInboxSong = (payload: toggleInobxSongPayload) => ({
 })
 
 export interface addCachePayload {
-  
+  key: string
+  cache: Cache
 }
 const addCache = (payload: addCachePayload) => ({
   type: AT.ADD_CACHE,

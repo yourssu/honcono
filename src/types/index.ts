@@ -37,8 +37,8 @@ export interface RecentReducer {
   isFetching: boolean
 }
 
-interface Cache {
-  expiredIn: Date,
+export interface Cache {
+  expiredIn: number,
   youtubeID: string,
 }
 

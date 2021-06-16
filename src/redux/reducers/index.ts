@@ -171,6 +171,25 @@ const reducer = (state: RootState = initialState, action: Action<any>): RootStat
         },
       }
 
+    case AT.ADD_CACHE: {
+      return {
+        ...state,
+        youtubeReducer: {
+          ...state.youtubeReducer,
+          cache: state.youtubeReducer.cache.set(action.payload.key, action.payload.cache)
+        }
+      }
+    }
+
+    case AT.DELETE_CACHE: 
+      return {
+        ...state,
+        youtubeReducer: {
+          ...state.youtubeReducer,
+          cache: state.youtubeReducer.cache.delete(action.payload.key)
+        }
+      }
+
     default:
       return state
   }
