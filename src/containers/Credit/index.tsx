@@ -42,6 +42,7 @@ function Credit() {
       <BottomSheet
         show={show}
         onHide={() => setShow(false)}
+        desktopWidth={500}
       >
         <PersonaDetail profile={credit} />
       </BottomSheet>
