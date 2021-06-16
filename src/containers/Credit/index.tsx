@@ -1,5 +1,5 @@
-import React, { Fragment, useCallback } from 'react'
-import { Divider, Text, Typography, useBottomSheet } from '@yourssu/design-system'
+import React, { Fragment, useCallback, useState } from 'react'
+import { Divider, Text, Typography, BottomSheet } from '@yourssu/design-system'
 
 import CreditList from './CreditList'
 import Persona, { Profile } from './Persona'
@@ -7,10 +7,13 @@ import PersonaDetail from './PersonaDetail'
 import * as Styled from './Credit.styled'
 
 function Credit() {
-  const { show } = useBottomSheet()
+  const [show, setShow] = useState(false)
+  const [credit, setCredit] = useState<Profile>()
+
   const handleClickPersona = useCallback((newCredit: Profile) => {
-    show(<PersonaDetail profile={newCredit} />)
-  }, [show])
+    setShow(true)
+    setCredit(newCredit)
+  }, [setShow])
 
   return (
     <Styled.Wrapper>
@@ -35,6 +38,13 @@ function Credit() {
           </Fragment>
         ))
       }
+
+      <BottomSheet
+        show={show}
+        onHide={() => setShow(false)}
+      >
+        <PersonaDetail profile={credit} />
+      </BottomSheet>
     </Styled.Wrapper>
   )
 }

@@ -5,14 +5,13 @@ import {
   IconSize,
   Text,
   Typography,
-  useBottomSheet,
 } from '@yourssu/design-system'
 
 import { SongType } from '../../types'
+import useDetail from '../../hooks/useDetail'
 import * as Styled from './SongComponent.styled'
 import _ from 'lodash'
 import Selector from '../../redux/selectors'
-import Detail from '../Detail'
 
 interface SongComponentProps {
   song?: SongType
@@ -25,15 +24,15 @@ function SongComponent(
     toggleInbox =  _.noop,
   }: SongComponentProps,
   forwardedRef: Ref<HTMLDivElement>) {
-  const { show } = useBottomSheet()
+  const { showDetail } = useDetail()
   const isInboxSong = useSelector(Selector.getIsInboxSong(song))
   
   const [focusOnInbox, setFocusOnInbox] = useState(false)
 
   const handleClickWrapper = useCallback(() => {
-    show(<Detail song={song}/>, { forceUnmount: true })
+    showDetail(song)
   }, [
-    show,
+    showDetail,
     song,
   ])
 
