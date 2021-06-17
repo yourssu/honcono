@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Selector from '../../redux/selectors'
 import { actions } from '../../redux/actions'
 import YouTube from 'react-youtube'
-import { Spinner } from '../../elements/Spinner'
 
 interface DetailProps {
   song?: SongType,
@@ -23,7 +22,7 @@ function Detail({
 }: DetailProps) {
   const dispatch = useDispatch()
 
-  const { youtubeID, isFetching } = useSelector(Selector.getYoutubeReducer)
+  const { youtubeID } = useSelector(Selector.getYoutubeReducer)
   const isInboxSong = useSelector(Selector.getIsInboxSong(song))
 
   useEffect(function requestYoutubeID() {
@@ -75,33 +74,21 @@ function Detail({
   ])
 
   const YoutubeComponent = useMemo(() => {
-    if (isFetching) {
-      return (
-        <Styled.YoutubeWrapper>
-          <Spinner />
-        </Styled.YoutubeWrapper>
-      )
-    }
+    if (!youtubeID) { return null }
 
-    if (youtubeID) {
-      return (
-        <Styled.YoutubeWrapper>
-          <YouTube
-            videoId={youtubeID}
-            opts={{
-              width: '100%',
-              height: '100%'
-            }}
-          />
-        </Styled.YoutubeWrapper>
-      )
-    }
-
-    return null
-  }, [
-    isFetching,
-    youtubeID,
-  ])
+    
+    return (
+      <Styled.YoutubeWrapper>
+        <YouTube
+          videoId={youtubeID}
+          opts={{
+            width: '100%',
+            height: '100%'
+          }}
+        />
+      </Styled.YoutubeWrapper>
+    )
+  }, [youtubeID])
 
   return (
     <Styled.Wrapper>
